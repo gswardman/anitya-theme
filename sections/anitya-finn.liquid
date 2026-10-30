@@ -12,13 +12,13 @@
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&display=swap">
 <div class="an-finn">
-  <a class="en" href="{{ section.settings.link }}">
+  <a class="en" href="{{ section.settings.link | default: 'https://finnwardman.com' }}">
     <span>{{ section.settings.before }}</span>
     <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
     <span>{{ section.settings.after }}</span>
   </a>
   <br>
-  <a class="sa" href="{{ section.settings.link }}" lang="sa">
+  <a class="sa" href="{{ section.settings.link | default: 'https://finnwardman.com' }}" lang="sa">
     <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
     <span>{{ section.settings.sanskrit }}</span>
   </a>
@@ -31,7 +31,7 @@
     {"type":"text","id":"before","label":"Text before the heart","default":"Powered by"},
     {"type":"text","id":"after","label":"Text after the heart","default":"Finn"},
     {"type":"text","id":"sanskrit","label":"Sanskrit line","default":"फिन् द्वारा ऊर्जावान"},
-    {"type":"url","id":"link","label":"Link","default":"https://finnwardman.com"}
+    {"type":"url","id":"link","label":"Link"}
   ],
   "presets": [{"name":"Powered by Finn"}]
 }
