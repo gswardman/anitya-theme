@@ -1,0 +1,216 @@
+{% comment %}
+  Anitya Labs home page. One section, every line of copy and every image is a setting,
+  so Geordie can change it in the theme editor or Claude can change it here and push.
+  Palette and type match the Anitya app: bg #15140f, ink #efe9dc, amber #d9a86c, Fraunces + Inter.
+{% endcomment %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@400;500&display=swap">
+<style>
+  .an{--bg:#15140f;--ink:#efe9dc;--ink2:#b8af9c;--muted:#9a927f;--dim:#5f5949;--line:#2b2820;--line2:#3a362c;--amber:#d9a86c;--card:#1a1813;
+    --display:Fraunces,Georgia,"Times New Roman",serif;--body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+  .an *{box-sizing:border-box}
+  .an .wrap{max-width:1040px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+  .an h1,.an h2,.an h3{font-family:var(--display);font-weight:300;letter-spacing:-.012em;line-height:1.08;margin:0;text-wrap:balance;color:var(--ink)}
+  .an h1{font-size:clamp(40px,7vw,76px)}
+  .an h2{font-size:clamp(30px,4.2vw,46px)}
+  .an p{margin:0}
+  .an .eyebrow{font:500 12px/1.4 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .an .lede{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.2vw,24px);line-height:1.4;color:var(--ink2);max-width:34em}
+  .an .small{font-size:13px;color:var(--muted)}
+  .an .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border-radius:14px;background:var(--ink);color:var(--bg);border:0;font:500 15px var(--body);cursor:pointer;text-decoration:none;white-space:nowrap}
+  .an .btn:hover{background:#fff}
+  .an .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line2)}
+  .an .btn:focus-visible,.an input:focus-visible,.an a:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+  .an .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:72px 48px}
+  .an .copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+  .an .form{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;max-width:520px}
+  .an .form input[type=email]{flex:1 1 220px;min-width:0;min-height:48px;border-radius:14px;border:1px solid var(--line2);background:var(--card);color:var(--ink);padding:0 16px;font:15px var(--body)}
+  .an .form input::placeholder{color:var(--dim)}
+  .an .form .ok{font-family:var(--display);font-style:italic;color:var(--amber);font-size:17px;padding-top:6px;flex-basis:100%}
+  .an .form .err{color:#e0a28a;font-size:14px;flex-basis:100%}
+  .an .fine{font-size:13px;color:var(--muted);max-width:40em}
+  .an .fine b{color:var(--ink2);font-weight:500}
+  .an .phone{position:relative;border-radius:40px;background:#0d0c09;padding:12px;border:1px solid var(--line2);box-shadow:0 30px 80px rgba(0,0,0,.55);max-width:360px;width:100%;margin:0 auto}
+  .an .phone .screen{border-radius:30px;overflow:hidden;background:var(--bg);aspect-ratio:760/1301}
+  .an .phone.short .screen{aspect-ratio:760/1129}
+  .an .phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+  .an .feat{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-block:64px;border-top:1px solid var(--line)}
+  .an .feat .copy{gap:18px;max-width:36em}
+  .an .feat.flip .copy{order:2}
+  .an .feat p{color:var(--ink2);font-size:17px}
+  .an .feat .phone{max-width:320px}
+  .an .kv{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:6px}
+  .an .kv b{display:block;font:500 26px/1.1 var(--body);font-variant-numeric:tabular-nums;color:var(--ink)}
+  .an .kv b.am{color:var(--amber)}
+  .an .kv span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+  .an .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:64px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .an .list{display:grid;gap:18px;font-size:16px;color:var(--ink2)}
+  .an .list>div{display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:start}
+  .an .list svg{width:22px;height:22px;stroke:var(--amber);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+  .an .list strong{display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+  .an .products{padding-block:72px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .an .shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .an .shelf div{aspect-ratio:3/4;border-radius:18px;border:1px dashed var(--line2);display:flex;align-items:flex-end;padding:14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .an .about{border-top:1px solid var(--line);padding-block:72px;display:grid;grid-template-columns:.8fr 1.2fr;gap:48px}
+  .an .about p{font-family:var(--display);font-weight:300;font-size:21px;line-height:1.45;color:var(--ink2);max-width:30em}
+  .an .about p+p{margin-top:18px}
+  .an .about .sign{font-family:var(--body);font-size:14px;color:var(--muted);margin-top:26px}
+  .an .mt{margin-top:14px}
+  @media(max-width:860px){.an .hero,.an .feat,.an .band,.an .products,.an .about{grid-template-columns:1fr;gap:36px}.an .feat.flip .copy{order:0}.an .hero{padding-block:48px 32px}.an .phone{max-width:300px}.an .feat .phone{max-width:280px}}
+  @media(prefers-reduced-motion:reduce){.an *{transition:none!important}}
+</style>
+
+{%- liquid
+  assign img_hero = section.settings.img_hero
+  assign img_feat1 = section.settings.img_feat1
+  assign img_feat2 = section.settings.img_feat2
+-%}
+
+<div class="an" id="an-{{ section.id }}">
+<div class="wrap">
+
+<section class="hero" id="top">
+  <div class="copy">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1>{{ section.settings.headline }}</h1>
+    <p class="lede">{{ section.settings.lede }}</p>
+    <div id="join">{% render 'anitya-signup', id: 'hero', label: section.settings.cta_label, ok: section.settings.cta_ok, tags: 'newsletter,app-list' %}</div>
+    <p class="fine"><b>{{ section.settings.fine_bold }}</b> {{ section.settings.fine }}</p>
+  </div>
+  <div class="phone"><div class="screen">
+    {%- if img_hero -%}{{ img_hero | image_url: width: 760 | image_tag: loading: 'eager', alt: img_hero.alt | default: 'Anitya app after a sit' }}{%- else -%}<img src="{{ 'anitya-after-sit.png' | asset_url }}" alt="Anitya after a sit: you sat for 45 minutes, heart rate through the sit, and the prompt to write three things" width="760" height="1301">{%- endif -%}
+  </div></div>
+</section>
+
+<section class="feat" id="app">
+  <div class="copy">
+    <p class="eyebrow">{{ section.settings.f1_eyebrow }}</p>
+    <h2>{{ section.settings.f1_title }}</h2>
+    <p>{{ section.settings.f1_text }}</p>
+    <div class="kv">
+      <div><b>{{ section.settings.kv1_n }}</b><span>{{ section.settings.kv1_l }}</span></div>
+      <div><b class="am">{{ section.settings.kv2_n }}</b><span>{{ section.settings.kv2_l }}</span></div>
+      <div><b>{{ section.settings.kv3_n }}</b><span>{{ section.settings.kv3_l }}</span></div>
+    </div>
+  </div>
+  <div class="phone short"><div class="screen">
+    {%- if img_feat1 -%}{{ img_feat1 | image_url: width: 760 | image_tag: loading: 'lazy', alt: img_feat1.alt | default: 'Anitya practice view' }}{%- else -%}<img src="{{ 'anitya-practice.png' | asset_url }}" alt="Anitya practice view: a thirty-day vibe line and a twelve-week grid of days sat and written" width="760" height="1129" loading="lazy">{%- endif -%}
+  </div></div>
+</section>
+
+<section class="feat flip">
+  <div class="copy">
+    <p class="eyebrow">{{ section.settings.f2_eyebrow }}</p>
+    <h2>{{ section.settings.f2_title }}</h2>
+    <p>{{ section.settings.f2_text }}</p>
+    <p class="small">{{ section.settings.f2_small }}</p>
+  </div>
+  <div class="phone"><div class="screen">
+    {%- if img_feat2 -%}{{ img_feat2 | image_url: width: 760 | image_tag: loading: 'lazy', alt: img_feat2.alt | default: 'Anitya week view' }}{%- else -%}<img src="{{ 'anitya-week.png' | asset_url }}" alt="Anitya week view: six of seven days kept, nightly HRV with sit nights marked" width="760" height="1301" loading="lazy">{%- endif -%}
+  </div></div>
+</section>
+
+<section class="band">
+  <div>
+    <p class="eyebrow">{{ section.settings.band_eyebrow }}</p>
+    <h2 class="mt">{{ section.settings.band_title }}</h2>
+  </div>
+  <div class="list">
+    <div><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/></svg><div><strong>{{ section.settings.b1_t }}</strong>{{ section.settings.b1_x }}</div></div>
+    <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><div><strong>{{ section.settings.b2_t }}</strong>{{ section.settings.b2_x }}</div></div>
+    <div><svg viewBox="0 0 24 24"><path d="M4 12h16M4 6h16M4 18h10"/></svg><div><strong>{{ section.settings.b3_t }}</strong>{{ section.settings.b3_x }}</div></div>
+    <div><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg><div><strong>{{ section.settings.b4_t }}</strong>{{ section.settings.b4_x }}</div></div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div>
+    <p class="eyebrow">{{ section.settings.p_eyebrow }}</p>
+    <h2 class="mt" style="margin-bottom:18px">{{ section.settings.p_title }}</h2>
+    <p class="lede" style="font-size:19px">{{ section.settings.p_text }}</p>
+    <div style="margin-top:26px">{% render 'anitya-signup', id: 'products', label: section.settings.p_cta, ok: section.settings.p_ok, tags: 'newsletter,product-waitlist', ghost: true %}</div>
+  </div>
+  <div class="shelf" aria-hidden="true"><div>{{ section.settings.shelf1 }}</div><div>{{ section.settings.shelf2 }}</div><div>{{ section.settings.shelf3 }}</div></div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <p class="eyebrow">About</p>
+    <h2 class="mt">{{ section.settings.a_title }}</h2>
+  </div>
+  <div>
+    <p>{{ section.settings.a_p1 }}</p>
+    <p>{{ section.settings.a_p2 }}</p>
+    <p class="sign">{{ section.settings.a_sign }}</p>
+  </div>
+</section>
+
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Anitya home",
+  "tag": "section",
+  "class": "anitya-home-section",
+  "settings": [
+    {"type":"header","content":"Hero"},
+    {"type":"text","id":"eyebrow","label":"Eyebrow","default":"A daily practice app · free"},
+    {"type":"text","id":"headline","label":"Headline","default":"Sit. Write three things. Watch it work."},
+    {"type":"textarea","id":"lede","label":"Lede","default":"Anitya reads your morning sit from the ring you already wear, asks for three things you are grateful for, and keeps the journal. Over the weeks it shows you, in your own numbers, that the practice is doing something."},
+    {"type":"text","id":"cta_label","label":"Button","default":"Get the app"},
+    {"type":"text","id":"cta_ok","label":"After signup","default":"You are on the list. The app is free, and first builds go out in order."},
+    {"type":"text","id":"fine_bold","label":"Fine print, bold part","default":"Free now, and for the foreseeable future."},
+    {"type":"text","id":"fine","label":"Fine print","default":"Works with Oura today. Your entries stay on your phone. Nothing is shared."},
+    {"type":"image_picker","id":"img_hero","label":"Hero phone image (leave empty for the built-in shot)"},
+
+    {"type":"header","content":"Feature 1: after the sit"},
+    {"type":"text","id":"f1_eyebrow","label":"Eyebrow","default":"After the sit"},
+    {"type":"text","id":"f1_title","label":"Title","default":"What the ring saw while you sat."},
+    {"type":"textarea","id":"f1_text","label":"Text","default":"Start a session on your Oura, sit, and when the ring syncs Anitya tells you plainly what happened: how far your heart rate came down, where your HRV sat against your thirty-night normal, how still you were. Night sits count too, with the time it took you to fall back asleep."},
+    {"type":"text","id":"kv1_n","label":"Number 1","default":"9"},
+    {"type":"text","id":"kv1_l","label":"Label 1","default":"bpm lower than the hour before"},
+    {"type":"text","id":"kv2_n","label":"Number 2 (amber)","default":"+14 ms"},
+    {"type":"text","id":"kv2_l","label":"Label 2","default":"HRV above your 30-night normal"},
+    {"type":"text","id":"kv3_n","label":"Number 3","default":"Still"},
+    {"type":"text","id":"kv3_l","label":"Label 3","default":"0.3 movements a minute"},
+    {"type":"image_picker","id":"img_feat1","label":"Phone image"},
+
+    {"type":"header","content":"Feature 2: three things"},
+    {"type":"text","id":"f2_eyebrow","label":"Eyebrow","default":"Three things, then the journal"},
+    {"type":"text","id":"f2_title","label":"Title","default":"Gratitude and the sit, done together."},
+    {"type":"textarea","id":"f2_text","label":"Text","default":"Three lines before the day starts. Small is fine: the coffee, the light on the wall, a text from someone. A year later the app hands the line back to you on the same date. Below it, a plain journal with headings, lists, a checklist and photos, saved as you type."},
+    {"type":"text","id":"f2_small","label":"Small line","default":"Tap a sun through the day to log your vibe. The thirty-day line is the seven-day average; the grid is every day you sat and wrote."},
+    {"type":"image_picker","id":"img_feat2","label":"Phone image"},
+
+    {"type":"header","content":"What free means"},
+    {"type":"text","id":"band_eyebrow","label":"Eyebrow","default":"What free means here"},
+    {"type":"text","id":"band_title","label":"Title","default":"No subscription. No account. No feed."},
+    {"type":"text","id":"b1_t","label":"Point 1","default":"Your data stays with you"},
+    {"type":"text","id":"b1_x","label":"Point 1 text","default":"Entries live on your phone. There is no Anitya server holding your journal."},
+    {"type":"text","id":"b2_t","label":"Point 2","default":"Works with Oura today"},
+    {"type":"text","id":"b2_x","label":"Point 2 text","default":"Connect your Oura account once. Other rings and bands are on the list; tell us which you wear."},
+    {"type":"text","id":"b3_t","label":"Point 3","default":"No AI reads your ring data"},
+    {"type":"text","id":"b3_x","label":"Point 3 text","default":"Charts and plain numbers only. What the ring saw is shown, never interpreted for you."},
+    {"type":"text","id":"b4_t","label":"Point 4","default":"Free, and staying free"},
+    {"type":"text","id":"b4_x","label":"Point 4 text","default":"The app is how we build the practice. The products pay for it."},
+
+    {"type":"header","content":"Products"},
+    {"type":"text","id":"p_eyebrow","label":"Eyebrow","default":"Products · coming"},
+    {"type":"text","id":"p_title","label":"Title","default":"Things for the practice."},
+    {"type":"textarea","id":"p_text","label":"Text","default":"A few objects made for people who sit early. First on the bench: a calm stack with saffron and nothing to put you to sleep, and a weighted mask for the 4am waker. The shelf is empty on purpose until they are real."},
+    {"type":"text","id":"p_cta","label":"Button","default":"Join the waitlist"},
+    {"type":"text","id":"p_ok","label":"After signup","default":"Noted. You hear first, and before anything is on sale."},
+    {"type":"text","id":"shelf1","label":"Shelf label 1","default":"Calm stack"},
+    {"type":"text","id":"shelf2","label":"Shelf label 2","default":"Weighted mask"},
+    {"type":"text","id":"shelf3","label":"Shelf label 3","default":"Journal"},
+
+    {"type":"header","content":"About"},
+    {"type":"text","id":"a_title","label":"Title","default":"Anitya is the word for impermanence."},
+    {"type":"textarea","id":"a_p1","label":"Paragraph 1","default":"It is the word you hear for ten days on a Vipassana course: everything arises and passes, so you sit, observe, and start again. Anitya Labs makes the few things that help a daily sit stick, starting with an app that shows the practice working in your own numbers."},
+    {"type":"textarea","id":"a_p2","label":"Paragraph 2","default":"It began as one person's 4am routine, a ring, and four years of three-things lists kept in a journal. The app is that routine, tidied up so anyone can keep it."},
+    {"type":"text","id":"a_sign","label":"Sign-off","default":"Anitya Labs · built in Switzerland and on the Atlantic coast of France"}
+  ],
+  "presets": [{"name":"Anitya home"}]
+}
+{% endschema %}

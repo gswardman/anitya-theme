@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "home": {
+      "type": "anitya-home",
+      "settings": {}
+    }
+  },
+  "order": [
+    "home"
+  ]
+}

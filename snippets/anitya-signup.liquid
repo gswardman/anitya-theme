@@ -1,0 +1,14 @@
+{% comment %}
+  Email capture that lands in Shopify > Customers with the given tags.
+  Params: id, label, ok, tags, ghost (true for the outlined button)
+{% endcomment %}
+{%- form 'customer', id: 'an-signup-' | append: id, class: 'form' -%}
+  <input type="hidden" name="contact[tags]" value="{{ tags }}">
+  {%- if form.posted_successfully? -%}
+    <p class="ok">{{ ok }}</p>
+  {%- else -%}
+    <input type="email" name="contact[email]" id="an-email-{{ id }}" placeholder="you@email.com" required aria-label="Email address" autocomplete="email">
+    <button class="btn{% if ghost %} ghost{% endif %}" type="submit">{{ label }}</button>
+    {%- if form.errors -%}<p class="err">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+  {%- endif -%}
+{%- endform -%}
