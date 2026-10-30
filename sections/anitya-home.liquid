@@ -77,8 +77,8 @@
     <div id="join">{%- form 'customer', id: 'an-signup-hero', class: 'form' -%}<input type="hidden" name="contact[tags]" value="newsletter,app-list">{%- if form.posted_successfully? -%}<p class="ok">{{ section.settings.cta_ok }}</p>{%- else -%}<input type="email" name="contact[email]" id="an-email-hero" placeholder="you@email.com" required aria-label="Email address" autocomplete="email"><button class="btn" type="submit">{{ section.settings.cta_label }}</button>{%- if form.errors -%}<p class="err">{{ form.errors.messages.email }}</p>{%- endif -%}{%- endif -%}{%- endform -%}</div>
     <p class="fine"><b>{{ section.settings.fine_bold }}</b> {{ section.settings.fine }}</p>
   </div>
-  <div class="phone"><div class="screen">
-    {%- if img_hero -%}{{ img_hero | image_url: width: 760 | image_tag: loading: 'eager', alt: img_hero.alt | default: 'Anitya app after a sit' }}{%- else -%}<img src="{{ 'anitya-after-sit.png' | asset_url }}" alt="Anitya after a sit: you sat for 45 minutes, heart rate through the sit, and the prompt to write three things" width="760" height="1301">{%- endif -%}
+  <div class="phone short"><div class="screen">
+    {%- if img_hero -%}{{ img_hero | image_url: width: 760 | image_tag: loading: 'eager', alt: img_hero.alt | default: 'Anitya vibe trend' }}{%- else -%}<img src="{{ 'anitya-practice.png' | asset_url }}" alt="Anitya: your vibe over thirty days trending up, and the twelve-week grid of days sat and written" width="760" height="1129">{%- endif -%}
   </div></div>
 </section>
 
@@ -93,8 +93,8 @@
       <div><b>{{ section.settings.kv3_n }}</b><span>{{ section.settings.kv3_l }}</span></div>
     </div>
   </div>
-  <div class="phone short"><div class="screen">
-    {%- if img_feat1 -%}{{ img_feat1 | image_url: width: 760 | image_tag: loading: 'lazy', alt: img_feat1.alt | default: 'Anitya practice view' }}{%- else -%}<img src="{{ 'anitya-practice.png' | asset_url }}" alt="Anitya practice view: a thirty-day vibe line and a twelve-week grid of days sat and written" width="760" height="1129" loading="lazy">{%- endif -%}
+  <div class="phone"><div class="screen">
+    {%- if img_feat1 -%}{{ img_feat1 | image_url: width: 760 | image_tag: loading: 'lazy', alt: img_feat1.alt | default: 'Anitya after a sit' }}{%- else -%}<img src="{{ 'anitya-after-sit.png' | asset_url }}" alt="Anitya after a sit: you sat for 45 minutes, heart rate through the sit, and the prompt to write three things" width="760" height="1301" loading="lazy">{%- endif -%}
   </div></div>
 </section>
 
