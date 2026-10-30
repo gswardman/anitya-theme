@@ -74,7 +74,7 @@
     <p class="eyebrow">{{ section.settings.eyebrow }}</p>
     <h1>{{ section.settings.headline }}</h1>
     <p class="lede">{{ section.settings.lede }}</p>
-    <div id="join">{% render 'anitya-signup', id: 'hero', label: section.settings.cta_label, ok: section.settings.cta_ok, tags: 'newsletter,app-list' %}</div>
+    <div id="join">{%- form 'customer', id: 'an-signup-hero', class: 'form' -%}<input type="hidden" name="contact[tags]" value="newsletter,app-list">{%- if form.posted_successfully? -%}<p class="ok">{{ section.settings.cta_ok }}</p>{%- else -%}<input type="email" name="contact[email]" id="an-email-hero" placeholder="you@email.com" required aria-label="Email address" autocomplete="email"><button class="btn" type="submit">{{ section.settings.cta_label }}</button>{%- if form.errors -%}<p class="err">{{ form.errors.messages.email }}</p>{%- endif -%}{%- endif -%}{%- endform -%}</div>
     <p class="fine"><b>{{ section.settings.fine_bold }}</b> {{ section.settings.fine }}</p>
   </div>
   <div class="phone"><div class="screen">
@@ -128,7 +128,7 @@
     <p class="eyebrow">{{ section.settings.p_eyebrow }}</p>
     <h2 class="mt" style="margin-bottom:18px">{{ section.settings.p_title }}</h2>
     <p class="lede" style="font-size:19px">{{ section.settings.p_text }}</p>
-    <div style="margin-top:26px">{% render 'anitya-signup', id: 'products', label: section.settings.p_cta, ok: section.settings.p_ok, tags: 'newsletter,product-waitlist', ghost: true %}</div>
+    <div style="margin-top:26px">{%- form 'customer', id: 'an-signup-products', class: 'form' -%}<input type="hidden" name="contact[tags]" value="newsletter,product-waitlist">{%- if form.posted_successfully? -%}<p class="ok">{{ section.settings.p_ok }}</p>{%- else -%}<input type="email" name="contact[email]" id="an-email-products" placeholder="you@email.com" required aria-label="Email address" autocomplete="email"><button class="btn ghost" type="submit">{{ section.settings.p_cta }}</button>{%- if form.errors -%}<p class="err">{{ form.errors.messages.email }}</p>{%- endif -%}{%- endif -%}{%- endform -%}</div>
   </div>
   <div class="shelf" aria-hidden="true"><div>{{ section.settings.shelf1 }}</div><div>{{ section.settings.shelf2 }}</div><div>{{ section.settings.shelf3 }}</div></div>
 </section>
