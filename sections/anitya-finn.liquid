@@ -1,0 +1,38 @@
+{% comment %} Site-wide closing band: Powered by Finn, in English and in the Sanskrit from the tattoo. {% endcomment %}
+<style>
+  .an-finn{background:#0f0e0b;border-top:1px solid #2b2820;padding-block:30px 34px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));text-align:center}
+  .an-finn a{color:#9a927f;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+  .an-finn a:hover{color:#efe9dc}
+  .an-finn .en{font:500 14px/1.4 Inter,system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+  .an-finn .sa{font:400 20px/1.4 "Noto Sans Devanagari","Hind","Mukta",system-ui,sans-serif;margin-top:10px;letter-spacing:.04em}
+  .an-finn .heart{display:inline-block;width:16px;height:16px;fill:#e5484d;transform-origin:center;animation:an-beat 1.4s ease-in-out infinite}
+  .an-finn .sa .heart{width:15px;height:15px}
+  @keyframes an-beat{0%,100%{transform:scale(1)}14%{transform:scale(1.22)}28%{transform:scale(1)}42%{transform:scale(1.14)}60%{transform:scale(1)}}
+  @media(prefers-reduced-motion:reduce){.an-finn .heart{animation:none}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&display=swap">
+<div class="an-finn">
+  <a class="en" href="{{ section.settings.link }}">
+    <span>{{ section.settings.before }}</span>
+    <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
+    <span>{{ section.settings.after }}</span>
+  </a>
+  <br>
+  <a class="sa" href="{{ section.settings.link }}" lang="sa">
+    <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
+    <span>{{ section.settings.sanskrit }}</span>
+  </a>
+</div>
+{% schema %}
+{
+  "name": "Powered by Finn",
+  "tag": "section",
+  "settings": [
+    {"type":"text","id":"before","label":"Text before the heart","default":"Powered by"},
+    {"type":"text","id":"after","label":"Text after the heart","default":"Finn"},
+    {"type":"text","id":"sanskrit","label":"Sanskrit line","default":"फिन् द्वारा ऊर्जावान"},
+    {"type":"url","id":"link","label":"Link","default":"https://finnwardman.com"}
+  ],
+  "presets": [{"name":"Powered by Finn"}]
+}
+{% endschema %}
