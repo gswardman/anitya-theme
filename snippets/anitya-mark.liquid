@@ -1,0 +1,7 @@
+{% comment %} Anitya Labs mark. size in px; variant 'dark' for the dark site (off-white disc), 'light' for light backgrounds. {% endcomment %}
+{%- assign s = size | default: 40 -%}
+{%- if variant == 'light' -%}
+<img src="{{ 'anitya-mark.svg' | asset_url }}" width="{{ s }}" height="{{ s }}" alt="Anitya Labs" style="display:block;width:{{ s }}px;height:{{ s }}px">
+{%- else -%}
+<img src="{{ 'anitya-mark-dark.svg' | asset_url }}" width="{{ s }}" height="{{ s }}" alt="Anitya Labs" style="display:block;width:{{ s }}px;height:{{ s }}px">
+{%- endif -%}
