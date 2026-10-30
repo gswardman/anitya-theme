@@ -9,10 +9,10 @@ id: eyebrow  (Eyebrow)
 A daily practice app · free
 
 id: headline  (Headline)
-Sit. Write three things. Watch it work.
+No pings. No streaks. Just a vibe.
 
 id: lede  (Lede)
-Anitya reads your morning sit from the ring you already wear, asks for three things you are grateful for, and keeps the journal. Over the weeks it shows you, in your own numbers, that the practice is doing something.
+Sit when you sit. Write when you write. Tap how you feel. Give it a few weeks and you won't need anyone to tell you it's working.
 
 id: cta_label  (Button)
 Get the app
