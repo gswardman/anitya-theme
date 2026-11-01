@@ -1,0 +1,56 @@
+{% comment %} About page hero: two-column layout with photo-in-heart circle. {% endcomment %}
+<style>
+  .about-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:center;padding:56px 0 40px;max-width:980px;margin:0 auto;border-bottom:1px solid rgba(var(--color-foreground),.08)}
+  .about-hero h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(40px,6vw,64px);line-height:1.05;margin:0 0 18px;text-wrap:balance}
+  .about-hero .about-sub{font-family:Fraunces,Georgia,serif;font-weight:300;font-size:clamp(20px,2.3vw,25px);line-height:1.45;margin:0;max-width:30ch}
+  .about-pic{max-width:400px;width:100%;justify-self:end;margin:0}
+  .about-pic svg{width:100%;height:auto;display:block}
+  .about-pic p{color:rgba(var(--color-foreground),.45);font-size:13px;font-style:italic;text-align:center;margin:8px 0 0}
+  @media(max-width:760px){
+    .about-hero{grid-template-columns:1fr;gap:24px;padding:32px 20px 40px}
+    .about-pic{order:-1;justify-self:center;max-width:300px}
+  }
+</style>
+<section class="about-hero">
+  <div>
+    <h1>{{ section.settings.heading }}</h1>
+    <p class="about-sub">{{ section.settings.subheading }}</p>
+  </div>
+  <figure class="about-pic">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-label="Photo of Geordie with family inside a heart">
+      <defs>
+        <filter id="about-ef" x="-15%" y="-15%" width="130%" height="130%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="11" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <clipPath id="about-cf"><circle cx="200" cy="200" r="178"/></clipPath>
+        <clipPath id="about-hf">
+          <path transform="translate(200 210) scale(14) translate(-12 -12.3)" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/>
+        </clipPath>
+      </defs>
+      {%- comment -%} Rough ring: white fill so photo reads in both themes, stroke uses currentColor {%- endcomment -%}
+      <circle cx="200" cy="200" r="184" fill="#fff" stroke="currentColor" stroke-width="10" filter="url(#about-ef)"/>
+      {%- comment -%} Devanagari letters at low opacity, clipped to circle {%- endcomment -%}
+      <g fill="currentColor" opacity=".14" clip-path="url(#about-cf)">
+        <path transform="translate(25.70 252) scale(0.17 -0.17)" d="M267 71Q205 71 156.5 104.0Q108 137 72.5 192.0Q37 247 12 313L65 336Q99 256 141.5 213.0Q184 170 243 170Q281 170 304.5 191.5Q328 213 328 245Q328 266 321.5 286.0Q315 306 303 324Q301 326 299 329Q266 314 222 301L175 394Q250 413 292.5 435.5Q335 458 335 491Q335 513 319.5 525.0Q304 537 279 537Q251 537 217.0 526.5Q183 516 148 500L98 597Q132 614 165.5 622.0Q199 630 231 630Q273 630 305.5 613.0Q338 596 365 563Q384 540 394.0 511.5Q404 483 404 458Q404 401 361 365Q356 361 351 357Q364 353 379 349Q408 342 437 342Q473 342 502 354Q520 361 534 371V536H464L415 612V624H719L768 547V536H640V-7H627L534 56V268Q527 266 520 265Q503 261 484 261Q436 261 395 285Q391 287 386 290Q395 275 401 260Q410 232 410 199Q410 140 369.5 105.5Q329 71 267 71Z"/>
+        <path transform="translate(249.35 252) scale(0.17 -0.17)" d="M275 -13Q233 16 193.0 53.0Q153 90 121.0 131.5Q89 173 69.0 218.5Q49 264 49 311Q49 356 69.0 388.0Q89 420 122.5 437.5Q156 455 197 455Q244 455 282 434Q310 419 334 396Q352 413 374 425Q416 447 467 447Q487 447 504 445Q506 445 508 444V536H-3L-52 612V624H692L742 547V536H614V-7H601L508 56V377Q504 377 500 377Q447 377 417.5 340.5Q388 304 388 245Q388 230 389.5 216.5Q391 203 393 192L286 219Q284 232 283.0 242.0Q282 252 282 265Q282 313 301 350Q296 353 291 355Q272 363 250 363Q211 363 183.5 336.5Q156 310 156 262Q156 194 199.0 138.0Q242 82 314 31Z"/>
+      </g>
+      {%- comment -%} Photo inside heart clip {%- endcomment -%}
+      <image href="{{ 'about-family-heart.jpg' | asset_url }}" x="36" y="86" width="335" height="250" clip-path="url(#about-hf)" preserveAspectRatio="none" loading="eager"/>
+      {%- comment -%} Heart outline {%- endcomment -%}
+      <path transform="translate(200 210) scale(14) translate(-12 -12.3)" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width=".18"/>
+    </svg>
+    <p>{{ section.settings.caption }}</p>
+  </figure>
+</section>
+{% schema %}
+{
+  "name": "About hero",
+  "tag": "section",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Hi, I'm Geordie."},
+    {"type": "textarea", "id": "subheading", "label": "Subheading", "default": "There are two things that, used together, have brought me through complex grief, cancer and losing everything professionally: meditation and gratitude."},
+    {"type": "text", "id": "caption", "label": "Photo caption", "default": "Sri Lanka, with Kirsten and the boys."}
+  ]
+}
+{% endschema %}

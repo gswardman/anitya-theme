@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "hero": {
+      "type": "anitya-about-hero",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main"
+  ]
+}
