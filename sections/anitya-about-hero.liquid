@@ -10,6 +10,16 @@
     .about-hero{grid-template-columns:1fr;gap:24px;padding:32px 20px 40px}
     .about-pic{order:-1;justify-self:center;max-width:300px}
   }
+  /* Hide page title on About template (hero has its own h1) */
+  .main-page-title{display:none}
+  /* Body copy: match hero serif, full text colour, reference sizing */
+  .rte{max-width:680px}
+  .rte p{font-family:Fraunces,Georgia,serif;font-weight:300;font-size:18px;line-height:1.6;color:rgb(var(--color-foreground));max-width:65ch}
+  .rte h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:28px;line-height:1.3;color:rgb(var(--color-foreground));margin:34px 0 10px}
+  .rte a{color:var(--color-button)}
+  @media(max-width:760px){
+    .rte p{font-size:17px}
+  }
 </style>
 <section class="about-hero">
   <div>
