@@ -75,6 +75,23 @@
     }
   }
 
+  .header__signin {
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgb(var(--color-button));
+    color: rgb(var(--color-button));
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+  .header__signin:hover {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
   shopify-account.header__icon {
     --shopify-account-font-heading: var(--font-heading-family);
     --shopify-account-font-heading-weight: var(--font-heading-weight);
@@ -260,6 +277,7 @@
           </localization-form>
         {%- endif -%}
       </div>
+      <a href="https://app.anityalabs.com/" class="header__signin" aria-label="Sign in">Sign in</a>
       {% render 'anitya-theme-toggle' %}
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
