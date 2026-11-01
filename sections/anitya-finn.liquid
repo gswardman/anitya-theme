@@ -1,32 +1,20 @@
-{% comment %} Site-wide closing band: Powered by Finn, in English and in the Sanskrit from the tattoo. {% endcomment %}
+{% comment %} Site-wide closing band: Powered by Finn, matching the app footer. {% endcomment %}
 <style>
-  .an-finn{background:#0f0e0b;border-top:1px solid #2b2820;padding-block:28px 26px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
-  .an-finn a{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
-  .an-finn .sa{font:400 clamp(14px,1.6vw,17px)/1.4 "Noto Sans Devanagari","Hind","Mukta",system-ui,sans-serif;color:#9a927f;letter-spacing:.03em}
-  .an-finn .sa:hover{color:#efe9dc}
-  .an-finn .en{font:400 9px/1.4 Inter,system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4a4539;gap:7px}
-  .an-finn .en:hover{color:#9a927f}
-  .an-finn .heart{display:inline-block;fill:#e5484d;transform-origin:center;animation:an-beat 1.4s ease-in-out infinite}
-  .an-finn .sa .heart{width:11px;height:11px;opacity:.9}
-  .an-finn .en .heart{width:8px;height:8px;opacity:.7}
-  .an-finn .legal{margin-top:14px;font:400 11px/1.6 Inter,system-ui,sans-serif;color:#5f5949;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-  .an-finn .legal a{color:#5f5949;display:inline;gap:0}
-  .an-finn .legal a:hover{color:#9a927f}
-  @keyframes an-beat{0%,100%{transform:scale(1)}14%{transform:scale(1.22)}28%{transform:scale(1)}42%{transform:scale(1.14)}60%{transform:scale(1)}}
+  .an-finn{border-top:1px solid rgba(var(--color-foreground),.08);padding:24px 20px;text-align:center;font-size:13px;color:rgba(var(--color-foreground),.45)}
+  .an-finn a{color:inherit;text-decoration:none}
+  .an-finn .heart{color:#D9A35F;display:inline-block;animation:an-beat 1.6s ease-in-out infinite}
+  [data-theme="light"] .an-finn .heart{color:#A0621C}
+  .an-finn .en{display:block}
+  .an-finn .sa{display:block;font-family:"Noto Sans Devanagari",sans-serif;font-size:12px;margin-top:4px}
+  .an-finn .legal{margin-top:14px;font-size:11px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .an-finn .legal a:hover{color:rgba(var(--color-foreground),.7)}
+  @keyframes an-beat{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.12)}}
   @media(prefers-reduced-motion:reduce){.an-finn .heart{animation:none}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&display=swap">
-{%- assign finn_link = section.settings.link | default: 'https://finnwardman.com' -%}
 <div class="an-finn">
-  <a class="sa" href="{{ finn_link }}" lang="sa">
-    <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
-    <span>{{ section.settings.sanskrit }}</span>
-  </a>
-  <a class="en" href="{{ finn_link }}">
-    <span>{{ section.settings.before }}</span>
-    <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.7 6.1 4.1c2-.3 3.9.6 5.9 2.9 2-2.3 3.9-3.2 5.9-2.9 3.5.6 5.2 4.3 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
-    <span>{{ section.settings.after }}</span>
-  </a>
+  <div class="en">{{ section.settings.before }} {{ section.settings.after }} <span class="heart">&#9829;&#xFE0E;</span></div>
+  <div class="sa" lang="sa">{{ section.settings.sanskrit }} <span class="heart">&#9829;&#xFE0E;</span></div>
   <div class="legal">
     <span>&copy; {{ 'now' | date: '%Y' }} Anitya Labs</span>
     {%- for policy in shop.policies -%}{%- if policy.body != blank -%}<a href="{{ policy.url }}">{{ policy.title }}</a>{%- endif -%}{%- endfor -%}
@@ -40,8 +28,7 @@
   "settings": [
     {"type":"text","id":"before","label":"Text before the heart","default":"Powered by"},
     {"type":"text","id":"after","label":"Text after the heart","default":"Finn"},
-    {"type":"text","id":"sanskrit","label":"Sanskrit line","default":"फिन् द्वारा ऊर्जावान"},
-    {"type":"url","id":"link","label":"Link"}
+    {"type":"text","id":"sanskrit","label":"Sanskrit line","default":"फिन् द्वारा ऊर्जावान"}
   ]
 }
 {% endschema %}

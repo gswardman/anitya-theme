@@ -1,8 +1,9 @@
-/* Anitya light palette for the Shopify theme.
-   Dark is the default (Dawn theme already dark, or the theme's own dark).
-   This adds a [data-theme="light"] override using the app's tokens. */
+/* Anitya light/dark for the Shopify theme.
+   Dark is the default (Dawn preset is all-dark).
+   [data-theme="light"] overrides both Anitya tokens AND Dawn colour variables. */
 
 [data-theme="light"] {
+  /* Anitya tokens (used by the toggle button and any shared components) */
   --bg: #FFFFFF;
   --side: #FAF8F4;
   --tile: #FFFFFF;
@@ -14,6 +15,22 @@
   --amber: #A0621C;
   --pale: #E2C9A4;
   --sel: #EEEAE2;
+
+  /* Dawn colour scheme overrides (rgb triplets, same format as theme.liquid) */
+  --color-background: 255, 255, 255;
+  --gradient-background: #FFFFFF;
+  --color-foreground: 30, 27, 22;
+  --color-background-contrast: 240, 237, 230;
+  --color-shadow: 30, 27, 22;
+  --color-button: 30, 27, 22;
+  --color-button-text: 255, 255, 255;
+  --color-secondary-button: 255, 255, 255;
+  --color-secondary-button-text: 30, 27, 22;
+  --color-link: 30, 27, 22;
+  --color-badge-foreground: 30, 27, 22;
+  --color-badge-background: 255, 255, 255;
+  --color-badge-border: 30, 27, 22;
+  --payment-terms-background-color: rgb(255, 255, 255);
 }
 
 /* Toggle button style */

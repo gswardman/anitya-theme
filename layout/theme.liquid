@@ -328,7 +328,7 @@
     <script>
     (function(){
       var c=document.cookie.match(/anitya_theme=(dark|light)/);
-      var t=c?c[1]:(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
+      var t=c?c[1]:'dark';
       document.documentElement.setAttribute('data-theme',t);
     })();
     </script>
