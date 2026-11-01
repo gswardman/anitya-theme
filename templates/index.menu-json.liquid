@@ -1,0 +1,12 @@
+{% layout none %}{% comment %}
+  Menu JSON for the Anitya Worker to read store menus without a Storefront API token.
+  Accessed at: https://www.anityalabs.com/?view=menu-json
+  Cached by the Worker for 1 hour with a 7-day stale backup.
+{% endcomment %}{% capture output %}{
+  "main": [{% for link in linklists['main-menu'].links %}{% unless forloop.first %},{% endunless %}
+    {"title":{{ link.title | json }},"url":{{ link.url | json }}}{% endfor %}
+  ],
+  "footer": [{% for link in linklists['footer'].links %}{% unless forloop.first %},{% endunless %}
+    {"title":{{ link.title | json }},"url":{{ link.url | json }}}{% endfor %}
+  ]
+}{% endcapture %}{{ output | strip_newlines }}
