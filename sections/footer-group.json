@@ -10,7 +10,8 @@
         "email": "",
         "button": "Send",
         "fine": "No list, no newsletter. Just a reply.",
-        "success": "Got it. I'll write back."
+        "success": "Got it. I'll write back.",
+        "name_placeholder": "Your name"
       }
     },
     "finn": {
