@@ -87,10 +87,10 @@
     display: flex;
     align-items: center;
   }
-  .header__signin:hover {
-    background: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
-  }
+  .header__signin { gap: 0.8rem; }
+  .header__signin a { color: inherit; text-decoration: none; }
+  .header__signin a:hover { text-decoration: underline; text-underline-offset: 0.4rem; }
+  .header__signin-sep { opacity: 0.5; }
 
   shopify-account.header__icon {
     --shopify-account-font-heading: var(--font-heading-family);
@@ -277,7 +277,7 @@
           </localization-form>
         {%- endif -%}
       </div>
-      <a href="https://app.anityalabs.com/" class="header__signin" aria-label="Sign in">Sign in</a>
+      <span class="header__signin"><a href="https://app.anityalabs.com/#login">Login</a><span class="header__signin-sep">|</span><a href="https://app.anityalabs.com/#signup">Sign up</a></span>
       {% render 'anitya-theme-toggle' %}
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
