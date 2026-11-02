@@ -2,30 +2,17 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "say": {
-      "type": "anitya-contact",
-      "settings": {
-        "heading": "Say hello.",
-        "copy": "A question, an idea, something that broke in the app. Write to me, I read everything.",
-        "email": "",
-        "button": "Send",
-        "fine": "No list, no newsletter. Just a reply.",
-        "success": "Got it. I'll write back.",
-        "name_placeholder": "Your name"
-      }
-    },
     "finn": {
       "type": "anitya-finn",
       "settings": {
         "before": "Powered by",
         "after": "Finn",
-        "sanskrit": "फिन् द्वारा ऊर्जावान",
+        "sanskrit": "\u092b\u093f\u0928\u094d \u0926\u094d\u0935\u093e\u0930\u093e \u090a\u0930\u094d\u091c\u093e\u0935\u093e\u0928",
         "link": "https://finnwardman.com"
       }
     }
   },
   "order": [
-    "say",
     "finn"
   ]
 }

@@ -18,6 +18,7 @@
   <div class="legal">
     <span>&copy; {{ 'now' | date: '%Y' }} Anitya Labs</span>
     {%- for policy in shop.policies -%}{%- if policy.body != blank -%}<a href="{{ policy.url }}">{{ policy.title }}</a>{%- endif -%}{%- endfor -%}
+    <a href="/pages/contact">Contact</a>
   </div>
 </div>
 {% schema %}
