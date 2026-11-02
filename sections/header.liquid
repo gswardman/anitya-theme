@@ -92,6 +92,23 @@
   .header__signin a:hover { text-decoration: underline; text-underline-offset: 0.4rem; }
   .header__signin-sep { opacity: 0.5; }
 
+  /* Lockup never wraps; on phones the app pill moves into the menu drawer so the logo has room */
+  .an-lockup, .an-lockup * { white-space: nowrap; }
+  @media screen and (max-width: 749px) {
+    .header__signin { display: none !important; }
+    .header { grid-template-columns: auto auto 1fr auto !important; padding-left: 1.2rem !important; padding-right: 1.2rem !important; column-gap: 0.4rem !important; }
+    .header__heading-link { justify-self: start; }
+    .header__icons .header__icon, .header__search .header__icon { width: 3.6rem !important; }
+    header-drawer .header__icon { width: 3.2rem !important; }
+    .anitya-theme-toggle { margin: 0 !important; }
+    .an-lockup { gap: 0.8rem !important; }
+    .an-lockup img { width: 34px !important; height: 34px !important; }
+    .an-lockup > span > span:first-child { font-size: 19px !important; }
+  }
+  .menu-drawer__app { display: flex; gap: 1.2rem; align-items: center; padding: 1.2rem 0 2rem; font-size: 1.6rem; }
+  .menu-drawer__app a { color: rgb(var(--color-foreground)); text-decoration: none; }
+  .menu-drawer__app a.menu-drawer__app-primary { border: 1px solid rgb(var(--color-button)); color: rgb(var(--color-button)); border-radius: 0.8rem; padding: 0.8rem 1.6rem; font-weight: 500; }
+
   shopify-account.header__icon {
     --shopify-account-font-heading: var(--font-heading-family);
     --shopify-account-font-heading-weight: var(--font-heading-weight);
