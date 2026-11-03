@@ -67,8 +67,8 @@
 
   /* Hero: two columns */
   .an-cs .cs-hero {
-    display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;
-    padding: 48px 0 56px;
+    display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start;
+    padding: 28px 0 40px;
   }
   .an-cs .cs-images { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
   .an-cs .cs-main-img {
@@ -77,7 +77,7 @@
   }
   .an-cs .cs-main-img img { width: 92%; height: auto; display: block; }
   .an-cs .cs-thumbs {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;
   }
   .an-cs .cs-thumb {
     background: var(--cream); border-radius: 14px; overflow: hidden;
@@ -86,7 +86,7 @@
   .an-cs .cs-thumb img { width: 90%; height: auto; display: block; }
 
   /* Buying column */
-  .an-cs .cs-buy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .an-cs .cs-buy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
   .an-cs .cs-eyebrow {
     font: 500 12px/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--amber);
   }
@@ -136,9 +136,9 @@
   /* CTA button */
   .an-cs .cs-cta {
     display: flex; align-items: center; justify-content: center;
-    min-height: 54px; border-radius: 14px;
+    min-height: 60px; border-radius: 14px;
     background: var(--ink); color: var(--bg);
-    font: 500 16px var(--body); border: 0; cursor: pointer; width: 100%;
+    font: 600 17px var(--body); border: 0; cursor: pointer; width: 100%;
     text-decoration: none;
   }
   .an-cs .cs-cta:hover { opacity: .9; }
@@ -148,13 +148,13 @@
 
   /* Section divider */
   .an-cs .cs-section { border-top: 1px solid var(--line); }
-  .an-cs .cs-section-inner { padding: 64px 0; }
+  .an-cs .cs-section-inner { padding: 44px 0; }
 
   /* Two jars */
   .an-cs .cs-jars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
   .an-cs .cs-jar {
     background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-    padding: 26px; display: flex; flex-direction: column; gap: 10px;
+    padding: 22px; display: flex; flex-direction: column; gap: 8px;
   }
   .an-cs .cs-jar-eyebrow {
     font: 500 12px/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--amber);
@@ -165,7 +165,7 @@
 
   /* Give it three weeks */
   .an-cs .cs-split {
-    display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;
+    display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start;
   }
   .an-cs .cs-split-left { flex: 1 1 360px; min-width: 0; }
   .an-cs .cs-split-right { flex: 2 1 480px; min-width: 0; }
@@ -177,7 +177,7 @@
   /* Gift cards */
   .an-cs .cs-gifts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .an-cs .cs-gift-card {
-    border: 1px solid var(--line); border-radius: 18px; padding: 26px;
+    border: 1px solid var(--line); border-radius: 18px; padding: 22px;
     display: flex; flex-direction: column; gap: 14px;
   }
   .an-cs .cs-gift-circle {
@@ -225,13 +225,32 @@
 
   /* Fine print */
   .an-cs .cs-fine {
-    max-width: 820px; margin: 0 auto; padding: 32px 0;
+    max-width: 820px; margin: 0 auto; padding: 24px 0;
     font-size: 12px; color: var(--faint);
   }
 
+
+  /* Sticky pre-order bar */
+  .an-cs .cs-sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: var(--bg); border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 20px rgba(0,0,0,.08);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    transform: translateY(110%); transition: transform .25s ease;
+  }
+  .an-cs .cs-sticky.is-on { transform: none; }
+  .an-cs .cs-sticky-in { max-width: 1200px; margin: 0 auto; display: flex; gap: 14px; align-items: center; }
+  .an-cs .cs-sticky-txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+  .an-cs .cs-sticky-name { font-family: var(--display); font-size: 17px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .an-cs .cs-sticky-sub { font-size: 12px; color: var(--ink2); }
+  .an-cs .cs-sticky .cs-cta { flex: 1 1 auto; min-height: 52px; max-width: 360px; margin-left: auto; }
+  .an-cs .cs-thumb { cursor: pointer; }
+  .an-cs .cs-thumb.is-on { outline: 2px solid var(--amber); outline-offset: 2px; }
+
   /* ---- Mobile ---- */
   @media (max-width: 860px) {
-    .an-cs .cs-hero { flex-direction: column; gap: 36px; padding: 32px 0 40px; }
+    .an-cs .cs-hero { flex-direction: column; gap: 22px; padding: 16px 0 28px; }
+    .an-cs .cs-section-inner { padding: 32px 0; }
     .an-cs .cs-split { flex-direction: column; gap: 28px; }
   }
 
@@ -263,10 +282,10 @@
         </div>
         {%- if product.images.size > 1 -%}
           <div class="cs-thumbs">
-            {%- for img in product.images offset: 1 limit: 3 -%}
-              <div class="cs-thumb">
+            {%- for img in product.images limit: 6 -%}
+              <button type="button" class="cs-thumb{% if forloop.first %} is-on{% endif %}" data-full="{{ img | image_url: width: 1200 }}" aria-label="Show image {{ forloop.index }}" style="border:0;padding:0;font:inherit;">
                 {{ img | image_url: width: 400 | image_tag: loading: 'lazy', alt: img.alt }}
-              </div>
+              </button>
             {%- endfor -%}
           </div>
         {%- endif -%}
@@ -350,6 +369,15 @@
         <p class="cs-refund">{{ section.settings.refund_line | replace: '[ship date]', ship_date }}</p>
         <p class="cs-gift">{{ section.settings.gift_line }}</p>
       </div>
+      <div class="cs-sticky" id="cs-sticky" aria-hidden="true">
+        <div class="cs-sticky-in">
+          <div class="cs-sticky-txt">
+            <span class="cs-sticky-name" id="cs-sticky-name"></span>
+            <span class="cs-sticky-sub">{{ section.settings.free_line_1 }}</span>
+          </div>
+          <button type="submit" form="cs-product-form" class="cs-cta" id="cs-sticky-btn" tabindex="-1">Pre-order</button>
+        </div>
+      </div>
 
     </section>
   </div>
@@ -358,7 +386,7 @@
   <div class="cs-section">
     <div class="cs-wrap">
       <div class="cs-section-inner">
-        <h2 style="margin-bottom:32px;">{{ section.settings.jars_heading }}</h2>
+        <h2 style="margin-bottom:22px;">{{ section.settings.jars_heading }}</h2>
         <div class="cs-jars">
           <div class="cs-jar">
             <div class="cs-jar-eyebrow">{{ section.settings.usha_eyebrow }}</div>
@@ -398,7 +426,7 @@
   <div class="cs-section">
     <div class="cs-wrap">
       <div class="cs-section-inner">
-        <h2 style="margin-bottom:28px;">{{ section.settings.gifts_heading }}</h2>
+        <h2 style="margin-bottom:20px;">{{ section.settings.gifts_heading }}</h2>
         <div class="cs-gifts">
           {%- for block in section.blocks -%}{%- if block.type == 'gift' -%}
           <div class="cs-gift-card" {{ block.shopify_attributes }}>
@@ -499,15 +527,42 @@
     if (!form) return;
     var btn = document.getElementById('cs-cta-btn');
     var radios = form.querySelectorAll('input[name="id"]');
+    var sbtn = document.getElementById('cs-sticky-btn');
+    var sname = document.getElementById('cs-sticky-name');
+    var sticky = document.getElementById('cs-sticky');
     function update() {
       radios.forEach(function(r) {
-        if (r.checked && btn) {
-          btn.textContent = 'Pre-order \u00b7 ' + r.getAttribute('data-price');
+        if (r.checked) {
+          var t = 'Pre-order \u00b7 ' + r.getAttribute('data-price');
+          if (btn) btn.textContent = t;
+          if (sbtn) sbtn.textContent = t;
+          var lab = form.querySelector('label[for="' + r.id + '"] .cs-tier-name');
+          if (sname && lab) sname.textContent = lab.textContent;
         }
       });
     }
     radios.forEach(function(r) { r.addEventListener('change', update); });
     update();
+    if (sticky && btn && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        var e = entries[0];
+        var show = !e.isIntersecting && e.boundingClientRect.top < 0;
+        sticky.classList.toggle('is-on', show);
+        sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
+        if (sbtn) sbtn.tabIndex = show ? 0 : -1;
+      });
+      io.observe(btn);
+    }
+    var main = document.querySelector('.an-cs .cs-main-img img');
+    document.querySelectorAll('.an-cs .cs-thumb').forEach(function(t) {
+      t.addEventListener('click', function() {
+        if (!main) return;
+        main.src = t.getAttribute('data-full');
+        main.removeAttribute('srcset');
+        document.querySelectorAll('.an-cs .cs-thumb').forEach(function(x) { x.classList.remove('is-on'); });
+        t.classList.add('is-on');
+      });
+    });
   })();
 </script>
 
