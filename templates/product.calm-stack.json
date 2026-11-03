@@ -1,0 +1,84 @@
+{
+  "sections": {
+    "calm-stack": {
+      "type": "anitya-calm-stack",
+      "blocks": {
+        "tier_1": {
+          "type": "tier",
+          "settings": {
+            "detail": "Usha and Sandhya \u00b7 60 mornings",
+            "saving": "",
+            "saving_evergreen": "",
+            "bonus": ""
+          }
+        },
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "detail": "120 mornings \u00b7 $59 a stack",
+            "saving": "Save $55",
+            "saving_evergreen": "Save $20",
+            "bonus": "Black Friday: + a free Sandhya jar ($35)"
+          }
+        },
+        "tier_3": {
+          "type": "tier",
+          "settings": {
+            "detail": "180 mornings \u00b7 $53 a stack",
+            "saving": "Save $87",
+            "saving_evergreen": "Save $48",
+            "bonus": "Black Friday: + a free Usha jar ($39)"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "When does it ship?",
+            "answer": "By 31 January 2027. This is a pre-order from our first production run. If the date moves, we tell you first and you can cancel for a full refund."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel?",
+            "answer": "Yes, any time before it ships, for any reason. Email hello@anityalabs.com with your order number."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I notice it?",
+            "answer": "Most people say two to three weeks for the saffron. Some only notice it on a hard day, or when they forget it."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I take it with my medication?",
+            "answer": "Ask your doctor or pharmacist before adding any supplement, especially if you take medication for mood or blood pressure."
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I get 21 Mornings and the app?",
+            "answer": "Your order email carries a link that sets up your account with your email already in. 21 Mornings waits on the Practice tab until you start it."
+          }
+        }
+      },
+      "block_order": [
+        "tier_1",
+        "tier_2",
+        "tier_3",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ]
+    }
+  },
+  "order": [
+    "calm-stack"
+  ]
+}

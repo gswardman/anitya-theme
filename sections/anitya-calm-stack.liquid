@@ -1,0 +1,626 @@
+{% comment %}
+  Anitya Calm Stack product page. One section, every line of copy is a setting.
+  Wrapper class .an-cs, all CSS scoped under it.
+  Light by default; dark when html[data-theme="dark"].
+{% endcomment %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  /* ---- Light tokens (default) ---- */
+  .an-cs {
+    --bg: #FFFFFF;
+    --card: #FBFBFA;
+    --ink: #1E1B16;
+    --ink2: #6B655A;
+    --faint: #8E877B;
+    --line: #E5E5E2;
+    --amber: #A0621C;
+    --tier-sel-border: #A0621C;
+    --tier-sel-bg: #F6F1E8;
+    --tier-bg: #FBFBFA;
+    --tier-border: #E5E5E2;
+    --bar-bg: #A0621C;
+    --bar-ink: #FFFFFF;
+    --cream: #efe9dc;
+    --display: Fraunces, Georgia, "Times New Roman", serif;
+    --body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Dark tokens ---- */
+  [data-theme="dark"] .an-cs {
+    --bg: #15140f;
+    --card: #1a1813;
+    --ink: #efe9dc;
+    --ink2: #b8af9c;
+    --faint: #9a927f;
+    --line: #2b2820;
+    --amber: #d9a86c;
+    --tier-sel-border: #d9a86c;
+    --tier-sel-bg: #221e17;
+    --tier-bg: #1a1813;
+    --tier-border: #3a362c;
+    --bar-bg: #d9a86c;
+    --bar-ink: #15140f;
+    --cream: #efe9dc;
+  }
+
+  .an-cs * { box-sizing: border-box; }
+  .an-cs .cs-wrap { max-width: 1200px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+  .an-cs h1, .an-cs h2, .an-cs h3 {
+    font-family: var(--display); font-weight: 300; letter-spacing: -.012em; line-height: 1.08; margin: 0; color: var(--ink);
+  }
+  .an-cs p { margin: 0; }
+  .an-cs a { color: var(--ink); }
+  .an-cs a:hover { color: var(--amber); }
+
+  /* Holiday bar */
+  .an-cs .cs-bar {
+    background: var(--bar-bg); color: var(--bar-ink);
+    text-align: center; font-size: 13px; font-weight: 500;
+    padding: 9px 16px;
+  }
+
+  /* Hero: two columns */
+  .an-cs .cs-hero {
+    display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;
+    padding: 48px 0 56px;
+  }
+  .an-cs .cs-images { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .an-cs .cs-main-img {
+    background: var(--cream); border-radius: 20px; overflow: hidden;
+    aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+  }
+  .an-cs .cs-main-img img { width: 92%; height: auto; display: block; }
+  .an-cs .cs-thumbs {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+  }
+  .an-cs .cs-thumb {
+    background: var(--cream); border-radius: 14px; overflow: hidden;
+    aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+  }
+  .an-cs .cs-thumb img { width: 90%; height: auto; display: block; }
+
+  /* Buying column */
+  .an-cs .cs-buy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .an-cs .cs-eyebrow {
+    font: 500 12px/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--amber);
+  }
+  .an-cs .cs-title { font-size: clamp(36px, 5vw, 52px); line-height: 1.05; }
+  .an-cs .cs-lede {
+    font-family: var(--display); font-weight: 300; font-size: 21px; line-height: 1.4; color: var(--ink2);
+  }
+  .an-cs .cs-chips { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; }
+  .an-cs .cs-chip {
+    border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px;
+  }
+
+  /* Tier cards */
+  .an-cs .cs-tiers { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .an-cs .cs-tiers legend { font-size: 14px; font-weight: 500; margin-bottom: 10px; padding: 0; }
+  .an-cs .cs-tier {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    width: 100%; min-height: 64px; padding: 14px 18px; border-radius: 14px;
+    cursor: pointer; font: inherit; color: inherit; text-align: left;
+    background: var(--tier-bg); border: 1px solid var(--tier-border);
+    position: relative;
+  }
+  .an-cs .cs-tier:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  .an-cs .cs-tier-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+  .an-cs .cs-tier-radio:checked + .cs-tier {
+    background: var(--tier-sel-bg); border: 1.5px solid var(--tier-sel-border);
+  }
+  .an-cs .cs-tier-name { font-family: var(--display); font-size: 20px; font-weight: 400; color: var(--ink); }
+  .an-cs .cs-tier-detail { font-size: 13px; color: var(--ink2); }
+  .an-cs .cs-tier-bonus { font-size: 12px; color: var(--amber); }
+  .an-cs .cs-tier-price { font-size: 22px; font-weight: 500; color: var(--ink); flex-shrink: 0; }
+  .an-cs .cs-tier-save { font-size: 13px; font-weight: 600; color: var(--amber); }
+
+  /* Free-with box */
+  .an-cs .cs-free {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .an-cs .cs-free-title {
+    font: 500 12px/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--faint);
+  }
+  .an-cs .cs-free-row { display: flex; gap: 12px; align-items: flex-start; }
+  .an-cs .cs-free-row svg { flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px; stroke: var(--amber); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .an-cs .cs-free-row b { font-weight: 500; }
+  .an-cs .cs-free-row .cs-sub { color: var(--ink2); }
+
+  /* CTA button */
+  .an-cs .cs-cta {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 54px; border-radius: 14px;
+    background: var(--ink); color: var(--bg);
+    font: 500 16px var(--body); border: 0; cursor: pointer; width: 100%;
+    text-decoration: none;
+  }
+  .an-cs .cs-cta:hover { opacity: .9; }
+  .an-cs .cs-cta:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  .an-cs .cs-refund { font-size: 13px; color: var(--faint); }
+  .an-cs .cs-gift { font-size: 13px; color: var(--ink2); }
+
+  /* Section divider */
+  .an-cs .cs-section { border-top: 1px solid var(--line); }
+  .an-cs .cs-section-inner { padding: 64px 0; }
+
+  /* Two jars */
+  .an-cs .cs-jars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .an-cs .cs-jar {
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    padding: 26px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .an-cs .cs-jar-eyebrow {
+    font: 500 12px/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--amber);
+  }
+  .an-cs .cs-jar h3 { font-style: italic; font-size: 34px; }
+  .an-cs .cs-jar p { color: var(--ink2); }
+  .an-cs .cs-jar .cs-claim { font-size: 14px; color: var(--ink); }
+
+  /* Give it three weeks */
+  .an-cs .cs-split {
+    display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;
+  }
+  .an-cs .cs-split-left { flex: 1 1 360px; min-width: 0; }
+  .an-cs .cs-split-right { flex: 2 1 480px; min-width: 0; }
+  .an-cs .cs-prose {
+    display: flex; flex-direction: column; gap: 16px;
+    font-family: var(--display); font-weight: 300; font-size: 21px; line-height: 1.45; color: var(--ink2);
+  }
+
+  /* Gift cards */
+  .an-cs .cs-gifts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .an-cs .cs-gift-card {
+    border: 1px solid var(--line); border-radius: 18px; padding: 26px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .an-cs .cs-gift-circle {
+    width: 96px; height: 96px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  }
+  .an-cs .cs-gift-circle.outline { border: 1.5px solid var(--ink); }
+  .an-cs .cs-gift-circle.filled { background: var(--amber); }
+  .an-cs .cs-gift-circle svg { stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .an-cs .cs-gift-circle .cs-circle-label { font-family: var(--display); font-size: 20px; color: var(--amber); }
+  .an-cs .cs-gift-card h3 { font-family: var(--display); font-weight: 400; font-size: 24px; }
+  .an-cs .cs-gift-card p { color: var(--ink2); }
+
+  /* Facts panels */
+  .an-cs .cs-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .an-cs .cs-fact {
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px; font-size: 14px;
+  }
+  .an-cs .cs-fact-header {
+    font-weight: 600; font-size: 15px; border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 8px;
+  }
+  .an-cs .cs-fact-serving { color: var(--ink2); }
+  .an-cs .cs-fact-row {
+    display: flex; justify-content: space-between; gap: 12px;
+    border-top: 1px solid var(--line); margin-top: 8px; padding-top: 8px;
+  }
+  .an-cs .cs-fact-other { color: var(--faint); margin-top: 10px; font-size: 13px; }
+
+  /* Who made this */
+  .an-cs .cs-who-text {
+    font-family: var(--display); font-weight: 300; font-size: 21px; line-height: 1.45; color: var(--ink2);
+  }
+  .an-cs .cs-who-sign { font-size: 14px; color: var(--faint); margin-top: 14px; }
+
+  /* FAQ */
+  .an-cs .cs-faq { max-width: 820px; margin: 0 auto; }
+  .an-cs .cs-faq details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+  .an-cs .cs-faq summary {
+    font-weight: 500; cursor: pointer; list-style: none; min-height: 44px;
+    display: flex; align-items: center;
+  }
+  .an-cs .cs-faq summary::-webkit-details-marker { display: none; }
+  .an-cs .cs-faq summary:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  .an-cs .cs-faq details p { margin: 10px 0 0; color: var(--ink2); }
+
+  /* Fine print */
+  .an-cs .cs-fine {
+    max-width: 820px; margin: 0 auto; padding: 32px 0;
+    font-size: 12px; color: var(--faint);
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 860px) {
+    .an-cs .cs-hero { flex-direction: column; gap: 36px; padding: 32px 0 40px; }
+    .an-cs .cs-split { flex-direction: column; gap: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { .an-cs * { transition: none !important; } }
+</style>
+
+{%- liquid
+  assign holiday = section.settings.holiday_offer
+  assign ship_date = section.settings.ship_date
+  assign tiers = section.blocks | where: "type", "tier"
+  assign faqs = section.blocks | where: "type", "faq"
+-%}
+
+<div class="an-cs">
+
+  {%- if section.settings.bar_show -%}
+    <div class="cs-bar">{{ section.settings.bar_text }}</div>
+  {%- endif -%}
+
+  <div class="cs-wrap">
+    <section class="cs-hero">
+
+      {%- comment -%} Image gallery {%- endcomment -%}
+      <div class="cs-images">
+        <div class="cs-main-img">
+          {%- if product.featured_image -%}
+            {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', alt: product.featured_image.alt }}
+          {%- endif -%}
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="cs-thumbs">
+            {%- for img in product.images offset: 1 limit: 3 -%}
+              <div class="cs-thumb">
+                {{ img | image_url: width: 400 | image_tag: loading: 'lazy', alt: img.alt }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Buying column {%- endcomment -%}
+      <div class="cs-buy">
+        <div class="cs-eyebrow">{{ section.settings.hero_eyebrow }}</div>
+        <h1 class="cs-title">{% if section.settings.hero_title != blank %}{{ section.settings.hero_title }}{% else %}{{ product.title }}{% endif %}</h1>
+        <p class="cs-lede">{{ section.settings.hero_lede }}</p>
+        <div class="cs-chips">
+          <span class="cs-chip">{{ section.settings.chip_1 }}</span>
+          <span class="cs-chip">{{ section.settings.chip_2 }}</span>
+          <span class="cs-chip">{{ section.settings.chip_3 }}</span>
+        </div>
+
+        {%- form 'product', product, id: 'cs-product-form' -%}
+          <fieldset class="cs-tiers">
+            <legend>{{ section.settings.tier_legend }}</legend>
+            {%- for block in tiers -%}
+              {%- assign idx = forloop.index0 -%}
+              {%- assign variant = product.variants[idx] -%}
+              {%- if variant -%}
+                <input
+                  type="radio"
+                  name="id"
+                  value="{{ variant.id }}"
+                  id="cs-tier-{{ block.id }}"
+                  class="cs-tier-radio"
+                  {% if forloop.index == 2 %}checked{% endif %}
+                  data-price="{{ variant.price | money }}"
+                >
+                <label for="cs-tier-{{ block.id }}" class="cs-tier" {{ block.shopify_attributes }}>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+                    <span style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+                      <span class="cs-tier-name">{{ variant.title }}</span>
+                    </span>
+                    <span class="cs-tier-detail">{{ block.settings.detail }}</span>
+                    {%- if holiday and block.settings.bonus != blank -%}
+                      <span class="cs-tier-bonus">{{ block.settings.bonus }}</span>
+                    {%- endif -%}
+                  </span>
+                  <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0;">
+                    <span class="cs-tier-price">{{ variant.price | money }}</span>
+                    {%- if holiday -%}
+                      {%- if block.settings.saving != blank -%}
+                        <span class="cs-tier-save">{{ block.settings.saving }}</span>
+                      {%- endif -%}
+                    {%- else -%}
+                      {%- if block.settings.saving_evergreen != blank -%}
+                        <span class="cs-tier-save">{{ block.settings.saving_evergreen }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </span>
+                </label>
+              {%- endif -%}
+            {%- endfor -%}
+          </fieldset>
+
+          <div class="cs-free">
+            <div class="cs-free-title">{{ section.settings.free_heading }}</div>
+            <div class="cs-free-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>
+              <span><b>{{ section.settings.free_line_1 }}</b></span>
+            </div>
+            <div class="cs-free-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span><b>{{ section.settings.free_line_2_bold }}</b> <span class="cs-sub">{{ section.settings.free_line_2 }}</span></span>
+            </div>
+            <div class="cs-free-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10z"/></svg>
+              <span><b>{{ section.settings.free_line_3_bold }}</b> <span class="cs-sub">{{ section.settings.free_line_3 }}</span></span>
+            </div>
+          </div>
+
+          <button type="submit" class="cs-cta" id="cs-cta-btn">
+            Pre-order &middot; {{ product.selected_or_first_available_variant.price | money }}
+          </button>
+        {%- endform -%}
+
+        <p class="cs-refund">{{ section.settings.refund_line | replace: '{{ship_date}}', ship_date }}</p>
+        <p class="cs-gift">{{ section.settings.gift_line }}</p>
+      </div>
+
+    </section>
+  </div>
+
+  {%- comment -%} Two jars, one routine {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <div class="cs-section-inner">
+        <h2 style="margin-bottom:32px;">{{ section.settings.jars_heading }}</h2>
+        <div class="cs-jars">
+          <div class="cs-jar">
+            <div class="cs-jar-eyebrow">{{ section.settings.usha_eyebrow }}</div>
+            <h3>Usha</h3>
+            <p>{{ section.settings.usha_body }}</p>
+            <p class="cs-claim">{{ section.settings.usha_claim }}</p>
+          </div>
+          <div class="cs-jar">
+            <div class="cs-jar-eyebrow">{{ section.settings.sandhya_eyebrow }}</div>
+            <h3>Sandhya</h3>
+            <p>{{ section.settings.sandhya_body }}</p>
+            <p class="cs-claim">{{ section.settings.sandhya_claim }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Give it three weeks {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <div class="cs-section-inner">
+        <div class="cs-split">
+          <div class="cs-split-left">
+            <h2>{{ section.settings.weeks_heading }}</h2>
+          </div>
+          <div class="cs-split-right cs-prose">
+            <p>{{ section.settings.weeks_p1 }}</p>
+            <p>{{ section.settings.weeks_p2 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} With every stack {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <div class="cs-section-inner">
+        <h2 style="margin-bottom:28px;">{{ section.settings.gifts_heading }}</h2>
+        <div class="cs-gifts">
+          <div class="cs-gift-card">
+            <div class="cs-gift-circle outline">
+              <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>
+              <span class="cs-circle-label">7 / 21</span>
+            </div>
+            <h3>{{ section.settings.gift1_title }}</h3>
+            <p>{{ section.settings.gift1_body }}</p>
+          </div>
+          <div class="cs-gift-card">
+            <div class="cs-gift-circle filled">
+              <svg width="34" height="34" viewBox="0 0 24 24" stroke="var(--bg)" aria-hidden="true"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10z"/></svg>
+            </div>
+            <h3>{{ section.settings.gift2_title }}</h3>
+            <p>{{ section.settings.gift2_body }}</p>
+          </div>
+          <div class="cs-gift-card">
+            <div class="cs-gift-circle outline">
+              <svg width="34" height="34" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>
+            </div>
+            <h3>{{ section.settings.gift3_title }}</h3>
+            <p>{{ section.settings.gift3_body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} What's in it, plainly {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <div class="cs-section-inner">
+        <div class="cs-split">
+          <div class="cs-split-left" style="display:flex;flex-direction:column;gap:14px;">
+            <h2>{{ section.settings.facts_heading }}</h2>
+            <p style="color:var(--ink2);">{{ section.settings.facts_intro }}</p>
+          </div>
+          <div class="cs-split-right">
+            <div class="cs-facts">
+              <div class="cs-fact">
+                <div class="cs-fact-header">{{ section.settings.usha_fact_title }}</div>
+                <div class="cs-fact-serving">{{ section.settings.usha_fact_serving }}</div>
+                <div class="cs-fact-row"><span>{{ section.settings.usha_fact_ingredient }}</span><span>{{ section.settings.usha_fact_amount }}</span></div>
+                <div class="cs-fact-other">{{ section.settings.usha_fact_other }}</div>
+              </div>
+              <div class="cs-fact">
+                <div class="cs-fact-header">{{ section.settings.sandhya_fact_title }}</div>
+                <div class="cs-fact-serving">{{ section.settings.sandhya_fact_serving }}</div>
+                <div class="cs-fact-row"><span>{{ section.settings.sandhya_fact_ingredient }}</span><span>{{ section.settings.sandhya_fact_amount }}</span></div>
+                <div class="cs-fact-other">{{ section.settings.sandhya_fact_other }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Who made this {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <div class="cs-section-inner">
+        <div class="cs-split">
+          <div class="cs-split-left">
+            <h2>{{ section.settings.who_heading }}</h2>
+          </div>
+          <div class="cs-split-right" style="display:flex;flex-direction:column;gap:14px;">
+            <p class="cs-who-text">{{ section.settings.who_body }}</p>
+            <p class="cs-who-sign">{{ section.settings.who_sign }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Questions {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <div class="cs-section-inner cs-faq">
+        <h2 style="margin-bottom:20px;">{{ section.settings.faq_heading }}</h2>
+        {%- for block in faqs -%}
+          <details {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.question }}</summary>
+            <p>{{ block.settings.answer }}</p>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Fine print {%- endcomment -%}
+  <div class="cs-section">
+    <div class="cs-wrap">
+      <p class="cs-fine">{{ section.settings.fda_line }}</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    var form = document.getElementById('cs-product-form');
+    if (!form) return;
+    var btn = document.getElementById('cs-cta-btn');
+    var radios = form.querySelectorAll('input[name="id"]');
+    function update() {
+      radios.forEach(function(r) {
+        if (r.checked && btn) {
+          btn.textContent = 'Pre-order \u00b7 ' + r.getAttribute('data-price');
+        }
+      });
+    }
+    radios.forEach(function(r) { r.addEventListener('change', update); });
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Calm Stack",
+  "tag": "section",
+  "class": "anitya-calm-stack-section",
+  "settings": [
+    {"type":"header","content":"Holiday bar"},
+    {"type":"checkbox","id":"bar_show","label":"Show holiday bar","default":true},
+    {"type":"text","id":"bar_text","label":"Bar text","default":"Black Friday pre-order: save up to $87. Every bundle comes with a free extra jar, until 24 Dec."},
+
+    {"type":"header","content":"Holiday offer"},
+    {"type":"checkbox","id":"holiday_offer","label":"Holiday offer on","default":true,"info":"When off, bonus lines hide and savings show the evergreen values."},
+
+    {"type":"header","content":"Hero"},
+    {"type":"text","id":"hero_eyebrow","label":"Eyebrow","default":"Black Friday pre-order \u00b7 first run"},
+    {"type":"text","id":"hero_title","label":"Title (blank = product title)","default":""},
+    {"type":"textarea","id":"hero_lede","label":"Lede","default":"Usha at dawn. Sandhya at dusk. Two jars, one routine, for people who are up before the house is."},
+    {"type":"text","id":"chip_1","label":"Chip 1","default":"Supports mood"},
+    {"type":"text","id":"chip_2","label":"Chip 2","default":"Melatonin-free"},
+    {"type":"text","id":"chip_3","label":"Chip 3","default":"Made in Utah with globally sourced ingredients"},
+    {"type":"text","id":"tier_legend","label":"Tier legend","default":"Choose your stack"},
+
+    {"type":"header","content":"Ship date (used in refund line)"},
+    {"type":"text","id":"ship_date","label":"Ship date","default":"31 January 2027"},
+
+    {"type":"header","content":"Free with every stack"},
+    {"type":"text","id":"free_heading","label":"Heading","default":"Free with every stack"},
+    {"type":"text","id":"free_line_1","label":"Line 1","default":"Free US shipping"},
+    {"type":"text","id":"free_line_2_bold","label":"Line 2 bold","default":"21 Mornings"},
+    {"type":"text","id":"free_line_2","label":"Line 2","default":"\u00b7 a 21-day morning practice from me, in the Anitya app"},
+    {"type":"text","id":"free_line_3_bold","label":"Line 3 bold","default":"Lifetime Anitya app membership"},
+    {"type":"text","id":"free_line_3","label":"Line 3","default":"\u00b7 everything in it now, and everything we add"},
+
+    {"type":"header","content":"Under the button"},
+    {"type":"textarea","id":"refund_line","label":"Refund line","default":"Charged today. Ships by {{ship_date}}. Cancel any time before it ships for a full refund. If the first run does not go ahead, everyone is refunded in full."},
+    {"type":"textarea","id":"gift_line","label":"Gift line","default":"Giving it as a gift? It arrives after Christmas, so we email you a printable gift card to give on the day."},
+
+    {"type":"header","content":"Two jars, one routine"},
+    {"type":"text","id":"jars_heading","label":"Heading","default":"Two jars, one routine."},
+    {"type":"text","id":"usha_eyebrow","label":"Usha eyebrow","default":"Dawn"},
+    {"type":"textarea","id":"usha_body","label":"Usha body","default":"88.5 mg saffron extract, nothing else in the capsule but the shell and a little rice flour. One capsule in the morning, with water. 60 capsules, so one jar is 60 mornings."},
+    {"type":"text","id":"usha_claim","label":"Usha claim","default":"Supports mood."},
+    {"type":"text","id":"sandhya_eyebrow","label":"Sandhya eyebrow","default":"Dusk"},
+    {"type":"textarea","id":"sandhya_body","label":"Sandhya body","default":"Magnesium glycinate, the gentle, well-absorbed form. Taken in the evening, as directed on the label. 90 capsules."},
+    {"type":"text","id":"sandhya_claim","label":"Sandhya claim","default":"Melatonin-free."},
+
+    {"type":"header","content":"Give it three weeks"},
+    {"type":"text","id":"weeks_heading","label":"Heading","default":"Give it three weeks."},
+    {"type":"textarea","id":"weeks_p1","label":"Paragraph 1","default":"Saffron is quiet. Most people who take it say they notice it after two or three weeks, and often only on the day they forget it."},
+    {"type":"textarea","id":"weeks_p2","label":"Paragraph 2","default":"One stack is 60 mornings of Usha. The Practice gives you four months and The Season six, long enough to know if it is for you, at a lower price per stack."},
+
+    {"type":"header","content":"With every stack"},
+    {"type":"text","id":"gifts_heading","label":"Heading","default":"With every stack."},
+    {"type":"text","id":"gift1_title","label":"Gift 1 title","default":"21 Mornings"},
+    {"type":"textarea","id":"gift1_body","label":"Gift 1 body","default":"A 21-day morning practice from me, inside the Anitya app. One short prompt each morning for the sit and your three things. A circle on Practice counts the mornings you keep. Start it the day your first jar arrives."},
+    {"type":"text","id":"gift2_title","label":"Gift 2 title","default":"Lifetime app membership"},
+    {"type":"textarea","id":"gift2_body","label":"Gift 2 body","default":"The Anitya journal and practice app, for life. Everything in it now, and everything we add, including anything that becomes paid later."},
+    {"type":"text","id":"gift3_title","label":"Gift 3 title","default":"Free US shipping"},
+    {"type":"textarea","id":"gift3_body","label":"Gift 3 body","default":"On every stack, every time. You get a tracking number the day it leaves the warehouse."},
+
+    {"type":"header","content":"What's in it, plainly"},
+    {"type":"text","id":"facts_heading","label":"Heading","default":"What's in it, plainly."},
+    {"type":"textarea","id":"facts_intro","label":"Intro","default":"Made in a cGMP facility in Utah with globally sourced ingredients. Every lot is third-party tested for identity, heavy metals and microbes. No melatonin, no stimulants, no proprietary blends. Vegetarian capsules."},
+    {"type":"text","id":"usha_fact_title","label":"Usha panel title","default":"Usha \u00b7 Supplement Facts"},
+    {"type":"text","id":"usha_fact_serving","label":"Usha serving","default":"Serving size 1 capsule \u00b7 60 servings"},
+    {"type":"text","id":"usha_fact_ingredient","label":"Usha ingredient","default":"Saffron extract (Crocus sativus, flower)"},
+    {"type":"text","id":"usha_fact_amount","label":"Usha amount","default":"88.5 mg"},
+    {"type":"text","id":"usha_fact_other","label":"Usha other ingredients","default":"Other ingredients: hypromellose (vegetable capsule), rice flour, maltodextrin."},
+    {"type":"text","id":"sandhya_fact_title","label":"Sandhya panel title","default":"Sandhya \u00b7 Supplement Facts"},
+    {"type":"text","id":"sandhya_fact_serving","label":"Sandhya serving","default":"Serving size [FROM VOX SPEC] \u00b7 90 capsules"},
+    {"type":"text","id":"sandhya_fact_ingredient","label":"Sandhya ingredient","default":"Magnesium (as magnesium glycinate)"},
+    {"type":"text","id":"sandhya_fact_amount","label":"Sandhya amount","default":"[MG]"},
+    {"type":"text","id":"sandhya_fact_other","label":"Sandhya other ingredients","default":"Other ingredients: [FROM VOX SPEC]."},
+
+    {"type":"header","content":"Who made this"},
+    {"type":"text","id":"who_heading","label":"Heading","default":"Who made this."},
+    {"type":"textarea","id":"who_body","label":"Body","default":"[Geordie writes this in his own words: the 4am sit, why a plain supplement that fits around the practice, and what anitya means.]"},
+    {"type":"text","id":"who_sign","label":"Sign-off","default":"Geordie, Anitya Labs"},
+
+    {"type":"header","content":"Questions"},
+    {"type":"text","id":"faq_heading","label":"Heading","default":"Questions."},
+
+    {"type":"header","content":"Fine print"},
+    {"type":"textarea","id":"fda_line","label":"FDA disclaimer","default":"These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Not for use by anyone under 18. If you are pregnant, nursing, taking medication or have a medical condition, consult your doctor before use."}
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Tier",
+      "settings": [
+        {"type":"text","id":"detail","label":"Detail line"},
+        {"type":"text","id":"saving","label":"Saving (holiday)"},
+        {"type":"text","id":"saving_evergreen","label":"Saving (evergreen)"},
+        {"type":"text","id":"bonus","label":"Holiday bonus line"}
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {"type":"text","id":"question","label":"Question"},
+        {"type":"textarea","id":"answer","label":"Answer"}
+      ]
+    }
+  ],
+  "presets": [{"name":"Calm Stack"}]
+}
+{% endschema %}
