@@ -1,0 +1,40 @@
+{%- comment -%}
+  Google Analytics 4 for www.anityalabs.com. Same property and web stream as
+  app.anityalabs.com (G-0V3B5DP7PT), cookie on .anityalabs.com, so a visitor is
+  one user from the store through to app sign-up.
+  This file: page views + email capture (generate_lead).
+  Ecommerce and every checkout step come from the "GA4 checkout" custom pixel
+  (Settings > Customer events), which reuses this _ga cookie.
+  Consent: analytics off by default for EEA + UK, on elsewhere, ads off
+  everywhere; Shopify's privacy banner choice updates it when shown.
+{%- endcomment -%}
+{%- unless request.design_mode -%}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V3B5DP7PT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB"]});
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'granted'});
+  gtag('js', new Date());
+  gtag('config','G-0V3B5DP7PT',{cookie_domain:'anityalabs.com'});
+
+  // Shopify privacy banner -> consent mode
+  document.addEventListener('visitorConsentCollected', function(e){
+    try { gtag('consent','update',{analytics_storage: e.detail.analyticsAllowed ? 'granted' : 'denied'}); } catch(_) {}
+  });
+
+  // Email capture on the store: newsletter / pop-up / contact form
+  document.addEventListener('submit', function(e){
+    var f = e.target;
+    if (!f || !f.action || f.action.indexOf('/contact') === -1) return;
+    var isNews = !!f.querySelector('input[name="contact[tags]"]') && !f.querySelector('textarea');
+    gtag('event','generate_lead',{lead_source: isNews ? 'store_email_capture' : 'store_contact_form'});
+  }, true);
+
+  // "Login | Sign up" clicks from the store to the app
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="app.anityalabs.com"]');
+    if (a) gtag('event','app_link_click',{link_url: a.href});
+  }, true);
+</script>
+{%- endunless -%}
