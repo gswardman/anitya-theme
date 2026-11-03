@@ -1,26 +1,30 @@
 /* Anitya light/dark for the Shopify theme.
-   Dark is the default (Dawn preset is all-dark).
+   Light is the default since 3 Nov 2026 (two-week test); the Dawn preset underneath is dark.
    [data-theme="light"] overrides both Anitya tokens AND Dawn colour variables. */
 
-[data-theme="light"] {
+/* Dawn puts its colours on .color-scheme-N wrappers (header, footer, sections),
+   so the light values must be set on those wrappers too, not just on <html>. */
+[data-theme="light"],
+[data-theme="light"] body,
+[data-theme="light"] [class*="color-scheme-"] {
   /* Anitya tokens (used by the toggle button and any shared components) */
   --bg: #FFFFFF;
-  --side: #FAF8F4;
+  --side: #FBFBFA;
   --tile: #FFFFFF;
-  --field: #EFECE6;
-  --line: #E3DFD7;
+  --field: #F0F0EE;
+  --line: #E5E5E2;
   --text: #1E1B16;
   --sub: #6B655A;
   --faint: #8E877B;
   --amber: #A0621C;
   --pale: #E2C9A4;
-  --sel: #EEEAE2;
+  --sel: #EDEDEA;
 
   /* Dawn colour scheme overrides (rgb triplets, same format as theme.liquid) */
   --color-background: 255, 255, 255;
   --gradient-background: #FFFFFF;
   --color-foreground: 30, 27, 22;
-  --color-background-contrast: 240, 237, 230;
+  --color-background-contrast: 240, 240, 238;
   --color-shadow: 30, 27, 22;
   --color-button: 30, 27, 22;
   --color-button-text: 255, 255, 255;
@@ -49,3 +53,17 @@
 .anitya-theme-toggle:hover {
   opacity: 1;
 }
+
+/* ---- Uniform light theme (3 Nov 2026) ---- */
+/* Brand lockup: wordmark follows the theme, mark swaps dark/light file */
+.an-lockup .an-word{color:rgb(var(--color-foreground))}
+.an-lockup .an-labs,.an-lockup .an-say{color:rgba(var(--color-foreground),.6)}
+.an-mark-l{display:none!important}
+[data-theme="light"] .an-mark-d{display:none!important}
+[data-theme="light"] .an-mark-l{display:block!important}
+[data-theme="light"] .header-wrapper{border-bottom-color:#E5E5E2}
+
+/* Home page section (.an) light tokens */
+[data-theme="light"] .an{--bg:#FFFFFF;--ink:#1E1B16;--ink2:#4A443A;--muted:#6B655A;--dim:#8E877B;--line:#E5E5E2;--line2:#D9D9D5;--amber:#A0621C;--card:#FFFFFF}
+[data-theme="light"] .an .btn:hover{background:#000}
+[data-theme="light"] .an .phone{box-shadow:0 24px 60px rgba(30,27,22,.18)}

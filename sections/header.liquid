@@ -220,7 +220,7 @@
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- comment -%} Anitya Labs lockup: stamp mark + Fraunces wordmark (replaces Dawn's logo block) {%- endcomment -%}
-            <span class="an-lockup" style="display:inline-flex;align-items:center;gap:12px">{% render 'anitya-mark', size: 40 %}<span style="display:inline-flex;flex-direction:column;align-items:center"><span style="font-family:Fraunces,Georgia,serif;font-weight:400;font-size:21px;letter-spacing:.01em;line-height:1;color:#efe9dc">Anitya <span style="color:#9a927f;font-weight:300">Labs</span></span><span style="margin-top:3px;font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:300;font-size:10px;letter-spacing:.18em;line-height:1;color:#9a927f">a &middot; nee &middot; cha</span></span></span>
+            <span class="an-lockup" style="display:inline-flex;align-items:center;gap:12px">{% render 'anitya-mark', size: 40, variant: 'auto' %}<span style="display:inline-flex;flex-direction:column;align-items:center"><span class="an-word" style="font-family:Fraunces,Georgia,serif;font-weight:400;font-size:21px;letter-spacing:.01em;line-height:1">Anitya <span class="an-labs" style="font-weight:300">Labs</span></span><span class="an-say" style="margin-top:3px;font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:300;font-size:10px;letter-spacing:.18em;line-height:1">a &middot; nee &middot; cha</span></span></span>
       </a>
       {%- if request.page_type == 'index' -%}
         </h1>
