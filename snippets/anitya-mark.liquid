@@ -2,6 +2,9 @@
 {%- assign s = size | default: 40 -%}
 {%- if variant == 'light' -%}
 <img src="{{ 'anitya-mark.svg' | asset_url }}" width="{{ s }}" height="{{ s }}" alt="Anitya Labs" style="display:block;width:{{ s }}px;height:{{ s }}px">
+{%- elsif variant == 'auto' -%}
+<img class="an-mark-d" src="{{ 'anitya-mark-dark.svg' | asset_url }}" width="{{ s }}" height="{{ s }}" alt="Anitya Labs" style="display:block;width:{{ s }}px;height:{{ s }}px">
+<img class="an-mark-l" src="{{ 'anitya-mark.svg' | asset_url }}" width="{{ s }}" height="{{ s }}" alt="" aria-hidden="true" style="display:block;width:{{ s }}px;height:{{ s }}px">
 {%- else -%}
 <img src="{{ 'anitya-mark-dark.svg' | asset_url }}" width="{{ s }}" height="{{ s }}" alt="Anitya Labs" style="display:block;width:{{ s }}px;height:{{ s }}px">
 {%- endif -%}
