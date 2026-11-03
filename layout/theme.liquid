@@ -328,7 +328,7 @@
     <script>
     (function(){
       var c=document.cookie.match(/anitya_theme=(dark|light)/);
-      var t=c?c[1]:'dark';
+      var t=c?c[1]:'light';
       document.documentElement.setAttribute('data-theme',t);
     })();
     </script>
@@ -424,6 +424,14 @@
       h.setAttribute('data-theme',t);
       document.cookie='anitya_theme='+t+';path=/;domain=.anityalabs.com;max-age=31536000;SameSite=Lax';
     }
+    // Theme test (from 3 Nov 2026): tag every email sign-up with the theme the visitor
+    // saw, so Shopify customers can be filtered by theme-light / theme-dark.
+    document.addEventListener('submit',function(e){
+      var f=e.target, tg=f && f.querySelector && f.querySelector('input[name="contact[tags]"]');
+      if(!tg) return;
+      var t='theme-'+(document.documentElement.getAttribute('data-theme')||'light');
+      tg.value=tg.value.replace(/,?theme-(light|dark)/g,'')+(tg.value?',':'')+t;
+    },true);
     </script>
   </body>
 </html>

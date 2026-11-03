@@ -1,5 +1,5 @@
 /* Anitya light/dark for the Shopify theme.
-   Dark is the default (Dawn preset is all-dark).
+   Light is the default since 3 Nov 2026 (two-week test); the Dawn preset underneath is dark.
    [data-theme="light"] overrides both Anitya tokens AND Dawn colour variables. */
 
 /* Dawn puts its colours on .color-scheme-N wrappers (header, footer, sections),
