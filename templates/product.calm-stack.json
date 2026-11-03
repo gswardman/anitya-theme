@@ -6,16 +6,13 @@
         "tier_1": {
           "type": "tier",
           "settings": {
-            "detail": "Usha and Sandhya \u00b7 60 mornings",
-            "saving": "",
-            "saving_evergreen": "",
-            "bonus": ""
+            "detail": "Usha and Sandhya · 60 mornings"
           }
         },
         "tier_2": {
           "type": "tier",
           "settings": {
-            "detail": "120 mornings \u00b7 $59 a stack",
+            "detail": "120 mornings · $59 a stack",
             "saving": "Save $55",
             "saving_evergreen": "Save $20",
             "bonus": "Black Friday: + a free Sandhya jar ($35)"
@@ -24,7 +21,7 @@
         "tier_3": {
           "type": "tier",
           "settings": {
-            "detail": "180 mornings \u00b7 $53 a stack",
+            "detail": "180 mornings · $53 a stack",
             "saving": "Save $87",
             "saving_evergreen": "Save $48",
             "bonus": "Black Friday: + a free Usha jar ($39)"
@@ -64,12 +61,62 @@
             "question": "How do I get 21 Mornings and the app?",
             "answer": "Your order email carries a link that sets up your account with your email already in. 21 Mornings waits on the Practice tab until you start it."
           }
+        },
+        "gift_1": {
+          "type": "gift",
+          "settings": {
+            "icon": "sun",
+            "circle_label": "7 / 21",
+            "title": "21 Mornings",
+            "body": "A 21-day morning practice from me, inside the Anitya app. One short prompt each morning for the sit and your three things. A circle on Practice counts the mornings you keep. Start it the day your first jar arrives."
+          }
+        },
+        "gift_2": {
+          "type": "gift",
+          "settings": {
+            "icon": "heart",
+            "title": "Lifetime app membership",
+            "body": "The Anitya journal and practice app, for life. Everything in it now, and everything we add, including anything that becomes paid later."
+          }
+        },
+        "gift_3": {
+          "type": "gift",
+          "settings": {
+            "icon": "van",
+            "title": "Free US shipping",
+            "body": "On every stack, every time. You get a tracking number the day it leaves the warehouse."
+          }
+        },
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "title": "Usha · Supplement Facts",
+            "serving": "Serving size 1 capsule · 60 servings",
+            "ingredient": "Saffron extract (Crocus sativus, flower)",
+            "amount": "88.5 mg",
+            "other": "Other ingredients: hypromellose (vegetable capsule), rice flour, maltodextrin."
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "title": "Sandhya · Supplement Facts",
+            "serving": "Serving size [FROM VOX SPEC] · 90 capsules",
+            "ingredient": "Magnesium (as magnesium glycinate)",
+            "amount": "[MG]",
+            "other": "Other ingredients: [FROM VOX SPEC]."
+          }
         }
       },
       "block_order": [
         "tier_1",
         "tier_2",
         "tier_3",
+        "gift_1",
+        "gift_2",
+        "gift_3",
+        "fact_1",
+        "fact_2",
         "faq_1",
         "faq_2",
         "faq_3",
