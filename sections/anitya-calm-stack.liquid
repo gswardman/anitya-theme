@@ -489,7 +489,7 @@
             <h2>{{ section.settings.who_heading }}</h2>
           </div>
           <div class="cs-split-right" style="display:flex;flex-direction:column;gap:14px;">
-            <p class="cs-who-text">{{ section.settings.who_body }}</p>
+            <p class="cs-who-text">{{ section.settings.who_body | newline_to_br }}</p>
             <p class="cs-who-sign">{{ section.settings.who_sign }}</p>
           </div>
         </div>
@@ -626,7 +626,7 @@
 
     {"type":"header","content":"Who made this"},
     {"type":"text","id":"who_heading","label":"Heading","default":"Who made this."},
-    {"type":"textarea","id":"who_body","label":"Body","default":"[Geordie writes this in his own words: the 4am sit, why a plain supplement that fits around the practice, and what anitya means.]"},
+    {"type":"textarea","id":"who_body","label":"Body","default":"There are two things that, used together, have brought me through complex grief, cancer and losing everything professionally: meditation and gratitude.\n\nAnitya (a · nee · cha) means impermanence. Everything changes. The good days pass, and so do the hard ones. Noticing the good while it's here is the whole practice."},
     {"type":"text","id":"who_sign","label":"Sign-off","default":"Geordie, Anitya Labs"},
 
     {"type":"header","content":"Questions"},
