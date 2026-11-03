@@ -347,7 +347,7 @@
           </button>
         {%- endform -%}
 
-        <p class="cs-refund">{{ section.settings.refund_line | replace: '{{ship_date}}', ship_date }}</p>
+        <p class="cs-refund">{{ section.settings.refund_line | replace: '[ship date]', ship_date }}</p>
         <p class="cs-gift">{{ section.settings.gift_line }}</p>
       </div>
 
@@ -550,7 +550,7 @@
     {"type":"text","id":"free_line_3","label":"Line 3","default":"\u00b7 everything in it now, and everything we add"},
 
     {"type":"header","content":"Under the button"},
-    {"type":"textarea","id":"refund_line","label":"Refund line","default":"Charged today. Ships by {{ship_date}}. Cancel any time before it ships for a full refund. If the first run does not go ahead, everyone is refunded in full."},
+    {"type":"textarea","id":"refund_line","label":"Refund line","info":"[ship date] is replaced with the Ship date setting","default":"Charged today. Ships by [ship date]. Cancel any time before it ships for a full refund. If the first run does not go ahead, everyone is refunded in full."},
     {"type":"textarea","id":"gift_line","label":"Gift line","default":"Giving it as a gift? It arrives after Christmas, so we email you a printable gift card to give on the day."},
 
     {"type":"header","content":"Two jars, one routine"},
