@@ -16,7 +16,8 @@
   gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB"]});
   gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'granted'});
   gtag('js', new Date());
-  gtag('config','G-0V3B5DP7PT',{cookie_domain:'anityalabs.com'});
+  var gaDbg=false;try{if(/[?&]ga_debug=1/.test(location.search))sessionStorage.setItem('ga_debug','1');gaDbg=sessionStorage.getItem('ga_debug')==='1';}catch(e){}
+  gtag('config','G-0V3B5DP7PT',gaDbg?{cookie_domain:'auto',debug_mode:true}:{cookie_domain:'auto'});
 
   // Shopify privacy banner -> consent mode
   document.addEventListener('visitorConsentCollected', function(e){
