@@ -15,63 +15,37 @@
         "tier_1": {
           "type": "tier",
           "settings": {
-            "detail": "Usha and Sandhya · 60 mornings",
-            "saving": "",
-            "saving_evergreen": "",
-            "bonus": ""
+            "detail": "1 stack · 60 mornings",
+            "balance": "$10 today, $59 when it ships"
           }
         },
         "tier_2": {
           "type": "tier",
           "settings": {
-            "detail": "120 mornings · $59 a stack",
-            "saving": "Save $55",
-            "saving_evergreen": "Save $20",
-            "bonus": "Black Friday: + a free Sandhya jar ($35)"
+            "detail": "2 stacks · 120 mornings · $59 a stack",
+            "saving": "$55",
+            "saving_evergreen": "$20",
+            "bonus": "Black Friday: + a free Evening Magnesium jar ($35)",
+            "balance": "$10 today, $108 when it ships",
+            "badge": "Most chosen"
           }
         },
         "tier_3": {
           "type": "tier",
           "settings": {
-            "detail": "180 mornings · $53 a stack",
-            "saving": "Save $87",
-            "saving_evergreen": "Save $48",
-            "bonus": "Black Friday: + a free Usha jar ($39)"
-          }
-        },
-        "gift_1": {
-          "type": "gift",
-          "settings": {
-            "icon": "sun",
-            "circle_label": "7 / 21",
-            "title": "21 Mornings",
-            "body": "A 21-day morning practice from me, inside the Anitya app. One short prompt each morning for the sit and your three things. A circle on Practice counts the mornings you keep. Start it the day your first jar arrives."
-          }
-        },
-        "gift_2": {
-          "type": "gift",
-          "settings": {
-            "icon": "heart",
-            "circle_label": "",
-            "title": "Lifetime app membership",
-            "body": "The Anitya journal and practice app, for life. Everything in it now, and everything we add, including anything that becomes paid later."
-          }
-        },
-        "gift_3": {
-          "type": "gift",
-          "settings": {
-            "icon": "van",
-            "circle_label": "",
-            "title": "Free US shipping",
-            "body": "On every stack, every time. You get a tracking number the day it leaves the warehouse."
+            "detail": "3 stacks · 180 mornings · $53 a stack",
+            "saving": "$87",
+            "saving_evergreen": "$48",
+            "bonus": "Black Friday: + a free Morning Saffron jar ($39)",
+            "balance": "$10 today, $149 when it ships"
           }
         },
         "fact_1": {
           "type": "fact",
           "settings": {
-            "title": "Usha · Supplement Facts",
-            "serving": "Serving size 1 capsule · 60 servings",
-            "ingredient": "Saffron extract (Crocus sativus, flower)",
+            "title": "Morning Saffron · Usha",
+            "serving": "Supplement Facts · Serving size 1 capsule · 60 servings",
+            "ingredient": "Saffron extract (<i>Crocus sativus</i>, flower)",
             "amount": "88.5 mg",
             "other": "Other ingredients: hypromellose (vegetable capsule), rice flour, maltodextrin."
           }
@@ -79,42 +53,56 @@
         "fact_2": {
           "type": "fact",
           "settings": {
-            "title": "Sandhya · Supplement Facts",
-            "serving": "90 capsules. Final values confirmed before shipping.",
+            "title": "Evening Magnesium · Sandhya",
+            "serving": "Supplement Facts · Serving size 2 capsules · 45 servings",
             "ingredient": "Magnesium (as magnesium glycinate)",
-            "amount": "Confirmed before shipping",
-            "other": "Other ingredients: confirmed before shipping."
+            "amount": "200 mg · 48% DV",
+            "other": "Other ingredients: hypromellose (vegetable capsule), rice flour."
           }
         },
         "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the $10 reservation work?",
+            "answer": "You pay $10 today to lock in the Black Friday price. We charge the rest to the same card when it ships, by 31 January, and we'll email you before we do."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it doesn't work for me?",
+            "answer": "Take it for 60 mornings. If you don't feel the difference, email us for a full refund. No need to send it back."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel my reservation?",
+            "answer": "Yes, any time before it ships, for any reason. Email hello@anityalabs.com with your order number. If the first run doesn't go ahead, everyone is refunded in full."
+          }
+        },
+        "faq_4": {
           "type": "faq",
           "settings": {
             "question": "When does it ship?",
             "answer": "By 31 January 2027. This is a pre-order from our first production run. If the date moves, we tell you first and you can cancel for a full refund."
           }
         },
-        "faq_2": {
-          "type": "faq",
-          "settings": {
-            "question": "Can I cancel?",
-            "answer": "Yes, any time before it ships, for any reason. Email hello@anityalabs.com with your order number."
-          }
-        },
-        "faq_3": {
+        "faq_5": {
           "type": "faq",
           "settings": {
             "question": "How long until I notice it?",
             "answer": "Most people say two to three weeks for the saffron. Some only notice it on a hard day, or when they forget it."
           }
         },
-        "faq_4": {
+        "faq_6": {
           "type": "faq",
           "settings": {
             "question": "Can I take it with my medication?",
             "answer": "Ask your doctor or pharmacist before adding any supplement, especially if you take medication for mood or blood pressure."
           }
         },
-        "faq_5": {
+        "faq_7": {
           "type": "faq",
           "settings": {
             "question": "How do I get 21 Mornings and the app?",
@@ -126,56 +114,17 @@
         "tier_1",
         "tier_2",
         "tier_3",
-        "gift_1",
-        "gift_2",
-        "gift_3",
         "fact_1",
         "fact_2",
         "faq_1",
         "faq_2",
         "faq_3",
         "faq_4",
-        "faq_5"
+        "faq_5",
+        "faq_6",
+        "faq_7"
       ],
-      "settings": {
-        "bar_show": true,
-        "bar_text": "Black Friday pre-order: save up to $87. Every bundle comes with a free extra jar, until 24 Dec.",
-        "holiday_offer": true,
-        "hero_eyebrow": "Black Friday pre-order · first run",
-        "hero_title": "",
-        "hero_lede": "Usha at dawn. Sandhya at dusk. Two jars, one routine, for people who are up before the house is.",
-        "chip_1": "Supports mood",
-        "chip_2": "Melatonin-free",
-        "chip_3": "Made in Utah with globally sourced ingredients",
-        "tier_legend": "Choose your stack",
-        "ship_date": "31 January 2027",
-        "free_heading": "Free with every stack",
-        "free_line_1": "Free US shipping",
-        "free_line_2_bold": "21 Mornings",
-        "free_line_2": "· a 21-day morning practice from me, in the Anitya app",
-        "free_line_3_bold": "Lifetime Anitya app membership",
-        "free_line_3": "· everything in it now, and everything we add",
-        "refund_line": "Charged today. Ships by [ship date]. Cancel any time before it ships for a full refund. If the first run does not go ahead, everyone is refunded in full.",
-        "gift_line": "Giving it as a gift? It arrives after Christmas, so we email you a printable gift card to give on the day.",
-        "jars_heading": "Two jars, one routine.",
-        "usha_eyebrow": "Dawn",
-        "usha_body": "88.5 mg saffron extract, nothing else in the capsule but the shell and a little rice flour. One capsule in the morning, with water. 60 capsules, so one jar is 60 mornings.",
-        "usha_claim": "Supports mood.",
-        "sandhya_eyebrow": "Dusk",
-        "sandhya_body": "Magnesium glycinate, the gentle, well-absorbed form. Taken in the evening, as directed on the label. 90 capsules.",
-        "sandhya_claim": "Melatonin-free.",
-        "weeks_heading": "Give it three weeks.",
-        "weeks_p1": "Saffron is quiet. Most people who take it say they notice it after two or three weeks, and often only on the day they forget it.",
-        "weeks_p2": "One stack is 60 mornings of Usha. The Practice gives you four months and The Season six, long enough to know if it is for you, at a lower price per stack.",
-        "gifts_heading": "With every stack.",
-        "facts_heading": "What's in it, plainly.",
-        "facts_intro": "Made in a cGMP facility in Utah with globally sourced ingredients. Every lot is third-party tested for identity, heavy metals and microbes. No melatonin, no stimulants, no proprietary blends. Vegetarian capsules.",
-        "who_heading": "Who made this.",
-        "who_body": "There are two things that, used together, have brought me through complex grief, cancer and losing everything professionally: meditation and gratitude.\n\nAnitya (a · nee · cha) means impermanence. Everything changes. The good days pass, and so do the hard ones. Noticing the good while it's here is the whole practice.",
-        "who_sign": "Geordie, Anitya Labs",
-        "faq_heading": "Questions.",
-        "fda_line": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Not for use by anyone under 18. If you are pregnant, nursing, taking medication or have a medical condition, consult your doctor before use."
-      }
+      "settings": {}
     }
   },
   "order": [
