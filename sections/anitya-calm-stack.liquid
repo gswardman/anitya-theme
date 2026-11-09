@@ -8,11 +8,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap">
 
 <style>
-/* Hide store header and footer on this page */
+/* Hide store header, footer, and cart drawer on this page */
 body:has(.an-cs) .shopify-section-group-header-group,
 body:has(.an-cs) .shopify-section-group-footer-group,
 body:has(.an-cs) .shopify-section-group--header-group,
-body:has(.an-cs) .shopify-section-group--footer-group { display: none !important; }
+body:has(.an-cs) .shopify-section-group--footer-group,
+body:has(.an-cs) [class*="shopify-section-group-header"],
+body:has(.an-cs) [class*="shopify-section-group-footer"],
+body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
 
 /* ---- Light tokens ---- */
 .an-cs {
