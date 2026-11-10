@@ -638,6 +638,34 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
   }
   radios.forEach(function(r) { r.addEventListener('change', update); });
   update();
+
+  /* PreProduct deposit: intercept form submit, use Cart API with selling_plan, redirect to checkout */
+  var sellingPlanInput = form.querySelector('input[name="selling_plan"]');
+  if (sellingPlanInput) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var variantId = null;
+      radios.forEach(function(r) { if (r.checked) variantId = parseInt(r.value, 10); });
+      if (!variantId) return;
+      var spId = parseInt(sellingPlanInput.value, 10);
+      var btns = document.querySelectorAll('button[type="submit"][form="cs-product-form"], #cs-product-form button[type="submit"]');
+      btns.forEach(function(b) { b.disabled = true; b.style.opacity = '0.6'; });
+      fetch('/cart/clear.js', { method: 'POST' })
+        .then(function() {
+          return fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: [{ id: variantId, quantity: 1, selling_plan: spId }] })
+          });
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.items) { window.location.href = '/checkout'; }
+          else { btns.forEach(function(b) { b.disabled = false; b.style.opacity = ''; }); }
+        })
+        .catch(function() { btns.forEach(function(b) { b.disabled = false; b.style.opacity = ''; }); });
+    });
+  }
 })();
 </script>
 
