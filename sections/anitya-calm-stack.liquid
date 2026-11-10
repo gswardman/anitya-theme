@@ -305,6 +305,16 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
 </div>
 
 {%- form 'product', product, id: 'cs-product-form' -%}
+{%- comment -%} PreProduct selling plan: required so checkout validation accepts the deposit {%- endcomment -%}
+{%- assign sp_id = '' -%}
+{%- for group in product.selling_plan_groups -%}
+  {%- for plan in group.selling_plans -%}
+    {%- if sp_id == '' -%}{%- assign sp_id = plan.id -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if sp_id != '' -%}
+<input type="hidden" name="selling_plan" value="{{ sp_id }}">
+{%- endif -%}
 <div class="cs-tier-grid">
 {%- for block in tiers -%}
   {%- assign idx = forloop.index0 -%}
