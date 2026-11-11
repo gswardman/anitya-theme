@@ -47,17 +47,17 @@
             "serving": "Supplement Facts · Serving size 1 capsule · 60 servings",
             "ingredient": "Saffron extract (<i>Crocus sativus</i>, flower)",
             "amount": "88.5 mg",
-            "other": "Other ingredients: hypromellose (vegetable capsule), rice flour, maltodextrin."
+            "other": "Other ingredients: rice flour, hypromellose (vegetable capsule)."
           }
         },
         "fact_2": {
           "type": "fact",
           "settings": {
             "title": "Evening Magnesium · Sandhya",
-            "serving": "Supplement Facts · confirmed before shipping",
-            "ingredient": "Magnesium (as magnesium glycinate)",
-            "amount": "confirmed before shipping",
-            "other": "Other ingredients: confirmed before shipping."
+            "serving": "Supplement Facts · Serving size 3 capsules · 30 servings per container",
+            "ingredient": "Magnesium (from 2,500 mg magnesium glycinate)",
+            "amount": "275 mg / 65% DV",
+            "other": "Other ingredients: hypromellose (capsule), magnesium stearate, silicon dioxide, rice flour."
           }
         },
         "faq_1": {
