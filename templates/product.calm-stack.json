@@ -64,7 +64,7 @@
           "type": "faq",
           "settings": {
             "question": "How does the $10 reservation work?",
-            "answer": "You pay $10 today to lock in the Black Friday price. We charge the rest to the same card when it ships, by 31 January, and we'll email you before we do."
+            "answer": "You pay $10 today to lock in the Black Friday price. We charge the rest to the same card when it ships in a few days, and we'll email you before we do."
           }
         },
         "faq_2": {
@@ -85,7 +85,7 @@
           "type": "faq",
           "settings": {
             "question": "When does it ship?",
-            "answer": "By 31 January 2027. This is a pre-order from our first production run. If the date moves, we tell you first and you can cancel for a full refund."
+            "answer": "In a few days. If it's delayed, we tell you first and you can cancel for a full refund."
           }
         },
         "faq_5": {
