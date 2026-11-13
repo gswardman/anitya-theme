@@ -2,7 +2,83 @@
   "sections": {
     "home": {
       "type": "anitya-home",
-      "settings": {}
+      "blocks": {
+        "app1": {
+          "type": "app_point",
+          "settings": {
+            "title": "Three things.",
+            "text": "Three short lines before the day starts. A year later the app hands the entry back to you on the same date."
+          }
+        },
+        "app2": {
+          "type": "app_point",
+          "settings": {
+            "title": "Tap a vibe.",
+            "text": "Six levels, always as icons, never as numbers. Tap as often as you like. The line is your seven-day average."
+          }
+        },
+        "app3": {
+          "type": "app_point",
+          "settings": {
+            "title": "Sit.",
+            "text": "Log a sit, with your Oura ring if you wear one. The grid shows every day you sat and wrote."
+          }
+        },
+        "app4": {
+          "type": "app_point",
+          "settings": {
+            "title": "A real journal.",
+            "text": "Photos, links, video, search. Bring your Day One journal with you and keep every entry."
+          }
+        },
+        "free1": {
+          "type": "free_point",
+          "settings": {
+            "title": "No credit card.",
+            "text": "Make an account and start. Nothing to cancel."
+          }
+        },
+        "free2": {
+          "type": "free_point",
+          "settings": {
+            "title": "No pings, no feed.",
+            "text": "No notifications, no streak guilt, nobody to follow."
+          }
+        },
+        "free3": {
+          "type": "free_point",
+          "settings": {
+            "title": "Nothing is public.",
+            "text": "Your journal is yours. Nothing is visible to anyone unless you choose to publish it."
+          }
+        },
+        "free4": {
+          "type": "free_point",
+          "settings": {
+            "title": "Free now.",
+            "text": "The Calm Shelf helps pay for the app."
+          }
+        },
+        "shelf1": {
+          "type": "shelf_product",
+          "settings": {
+            "label": "Black Friday pre-order",
+            "title": "The Calm Stack",
+            "body": "Saffron for the morning. Magnesium for the evening. Two jars, one routine, tied to the app so you can see how you feel.",
+            "guarantee": "Calmer mornings in 60 days, or your money back.",
+            "cta": "Reserve for $10",
+            "url": "/products/calm-stack",
+            "small": "Free extra jar with every bundle, until 24 Dec."
+          }
+        }
+      },
+      "block_order": ["app1","app2","app3","app4","free1","free2","free3","free4","shelf1"],
+      "settings": {
+        "bf_link": "/products/calm-stack",
+        "app_url": "https://app.anityalabs.com",
+        "fund_url": "https://finnwardman.com",
+        "about_url": "/pages/about"
+      }
     }
   },
   "order": [
