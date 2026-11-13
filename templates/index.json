@@ -74,8 +74,10 @@
       },
       "block_order": ["app1","app2","app3","app4","free1","free2","free3","free4","shelf1"],
       "settings": {
+        "bf_link": "/products/calm-stack",
         "app_url": "https://app.anityalabs.com",
-        "fund_url": "https://finnwardman.com"
+        "fund_url": "https://finnwardman.com",
+        "about_url": "/pages/about"
       }
     }
   },
