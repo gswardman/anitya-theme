@@ -170,6 +170,8 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
 .an-cs .cs-video{background:var(--cream);border-radius:20px;aspect-ratio:4/5;max-height:520px;width:100%;overflow:hidden;position:relative}
 .an-cs .cs-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
+/* ---- Sticky mobile CTA ---- */
+.an-cs .cs-sticky-cta{display:none}
 
 /* ---- Mobile ---- */
 @media(max-width:860px){
@@ -225,6 +227,13 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
 
   /* Facts grid inside FAQ */
   .an-cs .cs-facts-grid{grid-template-columns:1fr !important}
+
+  /* Sticky mobile CTA — appears when hero button scrolls out of view */
+  .an-cs .cs-sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--bg);border-top:1px solid var(--line);padding:12px 20px;padding-bottom:max(12px,env(safe-area-inset-bottom));box-shadow:0 -2px 12px rgba(0,0,0,.08)}
+  .an-cs .cs-sticky-cta.visible{display:flex;gap:10px;align-items:center}
+  .an-cs .cs-sticky-cta .btn{flex:1;min-height:50px;font-size:16px}
+  .an-cs .cs-sticky-cta .cs-sticky-price{font-family:var(--display);font-size:15px;font-weight:400;white-space:nowrap;color:var(--ink)}
+  .an-cs .cs-sticky-cta .cs-sticky-sub{font-size:11px;color:var(--ink2);white-space:nowrap}
 }
 
 @media(prefers-reduced-motion:reduce){.an-cs *{transition:none !important}}
@@ -597,7 +606,7 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
 <h2 class="h2" style="max-width:640px;margin:0 auto 14px">{{ section.settings.cta_heading }}</h2>
 <p class="lede" style="margin:0 auto 24px;max-width:520px">{{ section.settings.cta_lede }}</p>
 <div style="max-width:480px;margin:0 auto">
-<a href="#cs-hero-btn" class="btn" style="text-decoration:none" onclick="document.getElementById('cs-hero-btn').scrollIntoView({behavior:'smooth'});return false;">Back to top</a>
+<a href="#cs-hero-btn" class="btn" style="text-decoration:none">Back to top</a>
 </div>
 </div>
 </section>
@@ -613,8 +622,24 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
 <span class="serif" style="font-weight:300">फिन् द्वारा ऊर्जावान <span style="color:var(--amber)">&#9829;</span></span>
 </div>
 <a href="mailto:{{ section.settings.footer_email }}" class="small" style="text-decoration:none">{{ section.settings.footer_email }}</a>
+<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+  {%- for policy in shop.policies -%}
+    {%- if policy != blank -%}
+      <a href="{{ policy.url }}" class="small" style="text-decoration:none">{{ policy.title | escape }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
 </div>
 </footer>
+
+{%- comment -%} Sticky mobile Reserve button {%- endcomment -%}
+<div class="cs-sticky-cta" id="cs-sticky-cta">
+  <div>
+    <div class="cs-sticky-price">Reserve for $10</div>
+    <div class="cs-sticky-sub">The rest when it ships.</div>
+  </div>
+  <button type="button" class="btn" id="cs-sticky-btn">Reserve now</button>
+</div>
 
 </div>
 
@@ -629,7 +654,6 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
   function update() {
     radios.forEach(function(r) {
       if (!r.checked) return;
-      /* Update phone under-button text with balance from selected stack */
       if (phoneBal) {
         phoneBal.textContent = r.dataset.balance + '.';
       }
@@ -638,32 +662,74 @@ body:has(.an-cs) #shopify-section-cart-drawer { display: none !important; }
   radios.forEach(function(r) { r.addEventListener('change', update); });
   update();
 
-  /* PreProduct deposit: intercept form submit, use Cart API with selling_plan, redirect to checkout */
-  var sellingPlanInput = form.querySelector('input[name="selling_plan"]');
-  if (sellingPlanInput) {
-    form.addEventListener('submit', function(e) {
+  /* ---- Direct-to-checkout (bypasses PreProduct cart interstitial) ---- */
+  function doCheckout(triggerBtn) {
+    var variantId = null;
+    radios.forEach(function(r) { if (r.checked) variantId = parseInt(r.value, 10); });
+    if (!variantId) return;
+    var sellingPlanInput = form.querySelector('input[name="selling_plan"]');
+    var spId = sellingPlanInput ? parseInt(sellingPlanInput.value, 10) : null;
+    var btns = [document.getElementById('cs-hero-btn'), triggerBtn].filter(Boolean);
+    btns.forEach(function(b) { b.disabled = true; b.style.opacity = '0.6'; });
+
+    var item = { id: variantId, quantity: 1 };
+    if (spId) item.selling_plan = spId;
+
+    fetch('/cart/clear.js', { method: 'POST' })
+      .then(function() {
+        return fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: [item] })
+        });
+      })
+      .then(function(r) { return r.json(); })
+      .then(function() {
+        /* Go straight to Shopify checkout — skip /cart entirely */
+        window.location.href = '/checkout';
+      })
+      .catch(function() {
+        btns.forEach(function(b) { b.disabled = false; b.style.opacity = ''; });
+      });
+  }
+
+  /* Hero form submit */
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    doCheckout(null);
+  });
+
+  /* Sticky mobile CTA button */
+  var stickyBtn = document.getElementById('cs-sticky-btn');
+  if (stickyBtn) {
+    stickyBtn.addEventListener('click', function() { doCheckout(stickyBtn); });
+  }
+
+  /* ---- Back to Top (closing CTA) ---- */
+  var backLinks = document.querySelectorAll('a[href="#cs-hero-btn"]');
+  backLinks.forEach(function(a) {
+    a.addEventListener('click', function(e) {
       e.preventDefault();
-      var variantId = null;
-      radios.forEach(function(r) { if (r.checked) variantId = parseInt(r.value, 10); });
-      if (!variantId) return;
-      var spId = parseInt(sellingPlanInput.value, 10);
-      var btn = document.getElementById('cs-hero-btn');
-      if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
-      fetch('/cart/clear.js', { method: 'POST' })
-        .then(function() {
-          return fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ items: [{ id: variantId, quantity: 1, selling_plan: spId }] })
-          });
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.items) { window.location.href = '/checkout'; }
-          else if (btn) { btn.disabled = false; btn.style.opacity = ''; }
-        })
-        .catch(function() { if (btn) { btn.disabled = false; btn.style.opacity = ''; } });
+      var target = document.getElementById('cs-hero-btn') || document.querySelector('.cs-hero');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (target.tagName === 'BUTTON') target.focus({ preventScroll: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
+  });
+
+  /* ---- Sticky CTA visibility (mobile only) ---- */
+  var stickyCta = document.getElementById('cs-sticky-cta');
+  var heroBtn = document.getElementById('cs-hero-btn');
+  if (stickyCta && heroBtn) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        stickyCta.classList.toggle('visible', !entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    io.observe(heroBtn);
   }
 })();
 </script>
