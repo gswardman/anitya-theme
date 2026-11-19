@@ -212,8 +212,8 @@
     <div class="vibe-end-labels"><span id="an-lo">{{ section.settings.lo_sun }}</span><span id="an-hi">{{ section.settings.hi_sun }}</span></div>
 
     <div class="hero-actions">
-      <a class="btn" href="{{ section.settings.app_url }}" data-cta="app-signup">{{ section.settings.cta_label }}</a>
-      <span class="hero-signin">{{ section.settings.signin_text }} <a href="{{ section.settings.app_url }}">{{ section.settings.signin_link }}</a></span>
+      <a class="btn" href="{{ section.settings.app_url }}?ref=store-home-hero#signup" data-cta="app-signup">{{ section.settings.cta_label }}</a>
+      <span class="hero-signin">{{ section.settings.signin_text }} <a href="{{ section.settings.app_url }}?ref=store-home-hero#login">{{ section.settings.signin_link }}</a></span>
     </div>
     <p class="fine"><strong>{{ section.settings.fine_bold }}</strong> {{ section.settings.fine }}</p>
   </div>
@@ -333,7 +333,7 @@
 {%- comment -%} ── 4.9 Closing CTA ── {%- endcomment -%}
 <section class="section closing">
   <h2>{{ section.settings.close_title }}</h2>
-  <a class="btn" href="{{ section.settings.app_url }}" data-cta="app-signup">{{ section.settings.cta_label }}</a>
+  <a class="btn" href="{{ section.settings.app_url }}?ref=store-home-close#signup" data-cta="app-signup">{{ section.settings.cta_label }}</a>
   <p class="small">{{ section.settings.close_small }}</p>
 </section>
 

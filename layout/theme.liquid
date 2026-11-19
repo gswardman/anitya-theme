@@ -436,5 +436,35 @@
       tg.value=tg.value.replace(/,?theme-(light|dark)/g,'')+(tg.value?',':'')+t;
     },true);
     </script>
+    <script>
+    // Carry ad utm_source across the hop from anityalabs.com to app.anityalabs.com.
+    // On first landing with utm_source, save it. On click of any app link, append it to ref.
+    (function(){
+      try {
+        var qs = new URLSearchParams(location.search);
+        var src = qs.get('utm_source');
+        var cmp = qs.get('utm_campaign');
+        if (src) {
+          sessionStorage.setItem('_an_utm_source', src.slice(0, 60));
+          if (cmp) sessionStorage.setItem('_an_utm_campaign', cmp.slice(0, 60));
+        }
+      } catch(e) {}
+      document.addEventListener('click', function(e) {
+        try {
+          var a = e.target.closest && e.target.closest('a[href*="app.anityalabs.com"]');
+          if (!a) return;
+          var href = a.getAttribute('href');
+          if (!href) return;
+          var utm = sessionStorage.getItem('_an_utm_source');
+          if (!utm) return;
+          // Find existing ref param and append ~utm_source
+          var url = new URL(href, location.origin);
+          var ref = url.searchParams.get('ref') || 'store';
+          url.searchParams.set('ref', (ref + '~' + utm).slice(0, 100));
+          a.setAttribute('href', url.toString());
+        } catch(e) {}
+      }, true);
+    })();
+    </script>
   </body>
 </html>
