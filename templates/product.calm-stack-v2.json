@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "calm-stack": {
+      "type": "anitya-calm-stack-v2",
+      "blocks": {
+        "tier_1": {
+          "type": "tier",
+          "settings": {
+            "detail": "1 stack · 60 mornings",
+            "per_morning": "$1.15 a morning",
+            "sticky_detail": "1 stack"
+          }
+        },
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "detail": "2 stacks · 120 mornings · save $55",
+            "bonus": "Black Friday: + a free Evening Magnesium jar ($35)",
+            "note": "One for you, one for him.",
+            "per_morning": "98¢ a morning",
+            "sticky_detail": "2 stacks + a free jar"
+          }
+        },
+        "tier_3": {
+          "type": "tier",
+          "settings": {
+            "detail": "3 stacks + free jar · 240 mornings · save $87",
+            "bonus": "Black Friday: + a free Morning Saffron jar ($39)",
+            "per_morning": "66¢ a morning",
+            "sticky_detail": "3 stacks + free jar"
+          }
+        }
+      },
+      "block_order": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ],
+      "settings": {
+        "video_id": "4MZq9xogKqE"
+      }
+    }
+  },
+  "order": [
+    "calm-stack"
+  ]
+}
