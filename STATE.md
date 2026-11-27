@@ -1,70 +1,87 @@
 # STATE
 
-Updated: 24 Nov 2026
+Updated: 27 Nov 2026
 
 ## Current branch
 
-`shop/calm-stack-v2` (from main at `d975685`). Not merged. Nothing here reaches customers until Geordie OKs the preview.
-
-Preview link: none yet. Geordie connects a draft theme to this branch (go-live step 1), then opens `/products/calm-stack?view=calm-stack-v2`.
+`shop/saffron-first` (from main at `1ef8322`). Not merged. Waiting on Geordie to create Shopify variants and set the addon variant ID before merging to main.
 
 ## What was built
 
-- `sections/anitya-calm-stack-v2.liquid`: the page in `briefs/calm-stack-v2/mockup-clean.dc.html`. Copy is taken from the mockup word for word. All CSS sits under `.an-cs2`.
-- `templates/product.calm-stack-v2.json`: one section, type `anitya-calm-stack-v2`, with three tier blocks (detail line, Black Friday line, italic line, price per morning, phone bar detail).
-- The current Calm Stack sections and templates are untouched. So are `layout/theme.liquid`, `snippets/ga4.liquid`, `config/settings_data.json`, app embeds and pixels. No tracking calls were added.
+Saffron-first offer: Morning Saffron leads, Evening Magnesium is an optional add-on checkbox. All changes from the brief `01-Projects/TestVentures/ecom/04-Reference/Prompts/Saffron-First-Offer-Build-2026-11-27.md`.
 
-Buy path:
+### Files changed
 
-- `{% form 'product', product %}` with three radios (the variants in order). The second variant, The Practice, is selected by default.
-- No `selling_plan` anywhere: no hidden input, nothing in the Cart API call.
-- On submit: POST `/cart/clear.js`, then POST `/cart/add.js` with `{ items: [{ id, quantity: 1 }] }`, then go to `/checkout`. This is v3's handler minus the selling plan. If JS is off or the add fails, the form posts the plain way to `/cart/add`.
-- Tier names and prices come from the variants (`money_without_trailing_zeros`). The hero button, the "You pay ... today" line and the phone bar follow the selected tier.
-- Phone add-to-cart bar: below 860px only, shown once the hero button has scrolled up out of view (IntersectionObserver, safe-area padding). Its button runs the same submit as the hero button.
+- `sections/anitya-calm-stack-v2.liquid`: full rewrite for the saffron-first offer.
+- `templates/product.calm-stack-v2.json`: 2 tiers (1 jar $39, buy 2 get 1 free $78) instead of 3. Addon variant ID blank until set.
+- `templates/index.json`: homepage BF bar text and Calm Stack shelf block updated.
+- `sections/anitya-home.liquid`: schema defaults and preset updated for the new offer.
 
-Email form: `{% form 'customer' %}` with `contact[email]`, hidden `contact[tags]` = `calm-stack-app-lead`, `contact[accepts_marketing]` = true. After submit it shows "Thanks. Check your email for the app link." No email sending is wired.
+### Product page changes
 
-Founder video: the YouTube embed and `video_id` setting from v3.
+- **Top bar:** "Free US shipping · Ships within one business day · No subscription" (was Black Friday).
+- **Hero:** saffron jar only (magnesium jar removed). Kicker: "MORNING SAFFRON · USHA". H1: "One capsule of saffron each morning." Body: "88.5 mg saffron extract, one ingredient. Supports mood.*"
+- **App box** added to hero: six weather icons + "Track your vibe as you take it..." text.
+- **Buy box:** 2 tiers: "Morning Saffron, 1 jar" at $39 (variant 0) and "Buy 2, get 1 free" at $78 (variant 1, default, tagged "SAVE $39 · ONE JAR FREE").
+- **Add-on checkbox:** "Add the Evening Magnesium jar · +$25". Conditional on `addon_variant_id` being set. When checked, the magnesium variant is added as a second cart item.
+- **Button:** "Add to cart · $[total]" with dynamic total (tier + addon). Same on the phone sticky bar.
+- **Who it's for closing:** removed "two capsules in the evening".
+- **What each jar does:** saffron leads, magnesium labelled "Add the evening jar (optional)".
+- **App section:** "every order" instead of "every stack".
+- **About the price:** "65¢ a morning for one jar. 43¢ with buy 2, get 1 free." Refund line: "jar" not "jars".
+- **Day 1:** "One capsule of Morning Saffron. Add Evening Magnesium if you chose it."
+- **Guarantee:** "Same guarantee on every order."
+- **FAQ:** "Do both jars last the same time?" → "How long does a jar last?" with new answer.
+- **Bottom CTA:** "Buy 2, get 1 free: three jars of Morning Saffron, $78."
+- **Who made this:** untouched.
+- **Removed:** all Black Friday, Practice, Season, First Light, stack-centric copy. No "No code" line.
 
-Footer of the section: FDA line, hello@anityalabs.com, `shop.policies` links, Powered by Finn lines.
+### Homepage changes
 
-### Change from Geordie during the build (24 Nov): no store menu
+- BF bar: "Buy 2 jars of Morning Saffron, get 1 free".
+- Shelf block: button "Shop Morning Saffron", copy updated.
 
-- The section hides the theme's whole header group on this template (`.shopify-section-group-header-group{display:none !important}` in the section's own style block). That covers the store header and any announcement bar inside the header group. The rule only exists on pages that use the v2 section. `layout/theme.liquid` and the header section were not edited.
-- The page starts with a plain centred logo row (heart mark and "Anitya Labs", not a link, no nav, no cart icon), then the amber Black Friday bar from the mockup.
-- The theme footer is left alone.
-- Links off the page: the policy links, the hello@anityalabs.com mail link and the YouTube video. The mockup has no link to app.anityalabs.com, so none was added.
+### Buy path
+
+- `{% form 'product', product %}` with two radios (variants 0 and 1). Variant 1 (buy 2 get 1 free) selected by default.
+- Optional add-on checkbox. When checked, the JS adds both the saffron variant and the magnesium variant to the cart.
+- On submit: POST `/cart/clear.js`, then POST `/cart/add.js` with `{ items: [{saffron}, {magnesium if checked}] }`, then go to `/checkout`.
+- Phone bar: same submit logic.
+- Closing button always adds the default tier (buy 2 get 1 free), no addon.
+
+## Needs Geordie before merge
+
+1. **Create Shopify variants.** The Calm Stack product needs two new variants:
+   - Variant 0: "Morning Saffron, 1 jar" at $39
+   - Variant 1: "Buy 2, get 1 free" at $78
+   The old variants (First Light $69, The Practice $118, The Season $159) stay in Shopify but won't appear on the page.
+
+2. **Create the Evening Magnesium add-on product** (or variant) in Shopify at $25 (compare at $35). Note the variant ID.
+
+3. **Set the addon variant ID.** In the theme editor (or in `templates/product.calm-stack-v2.json`), set `addon_variant_id` to the magnesium variant ID. Until this is set, the add-on checkbox won't appear.
+
+4. **Backup the live theme** in Shopify admin: Themes > Actions > Duplicate. Name it `backup-live-2026-11-27 (before saffron-first)`.
+
+5. **Preview** the branch in a draft theme: Themes > Add theme > Connect from GitHub > branch `shop/saffron-first`. Check at 390px on a phone.
+
+6. **Merge to main** after preview is OK: squash merge, then the live theme updates in about 30 seconds.
+
+7. **Report the new variant IDs and SKUs** to the vault STATE.md for ODF mapping.
 
 ## Checks
 
-- `shopify theme check` (CLI 3, run with npx): 0 offenses in the two new files. The 27 warnings it reports are all in older files, not touched here. The Google Fonts links in the new section carry a `theme-check-disable RemoteAsset` comment; they are loaded the same way as in v3.
-- Rendered locally (Liquid replaced with sample values, Dawn's `base.css` loaded around it) and screenshotted at 1280px and 390px against the two mockup PDFs. Desktop height 7894px against the mockup's 7896px. Sections, spacing and copy match.
-- Buy path tested in a headless browser with the cart endpoints stubbed: the add call carries only `id` and `quantity`, then the browser goes to `/checkout`.
-- Not tested: a real store. The `form` tags, real prices, the customer form and the checkout need the preview theme.
+- `shopify theme check`: 0 offenses in changed files (one `UnusedAssign` was fixed). 29 warnings are all in older files, same as before.
+- No "Black Friday", "Practice", "Season", "First Light", stack price, "$10 today", or "free extra jar" left on the product page or homepage.
+- Pixel: no tracking changes. The existing ViewContent, AddToCart, and InitiateCheckout pixels fire as before (they are app embeds, not in the section).
 
-## Differences from the mockup
+## Go-live steps
 
-- No site header (brief), replaced by the centred logo row (Geordie's change).
-- Founder video is the YouTube embed, not the thumbnail link (brief).
-- The phone bar is fixed to the bottom of the screen and hidden until the hero button has scrolled out of view. In the mockup it is always there. When showing, it covers the last lines of the theme footer on phones.
-- The serif font could not be fetched from Google in the test browser, so line breaks in headings were compared with a local copy of Fraunces. Check headings on the preview.
-
-## Needs Geordie
-
-1. **Closing button.** The mockup's closing lines name The Practice ("The Practice, 2 stacks and a free Evening Magnesium jar, $118..."). There is no wording for the other two tiers, so the closing button always adds The Practice, whatever is selected in the hero. If it should follow the selected tier, it needs a line each for First Light and The Season.
-2. **Phone bar wording for the other tiers.** The mockup only gives "The Practice · 2 stacks + a free jar · $118". For the others the bar uses words already on the tiles: "First Light · 1 stack · $69" and "The Season · 3 stacks + free jar · $159". Editable per tier in the theme editor.
-3. **Cart is cleared before the add.** Kept from v3 so checkout holds one Calm Stack line only. Say if it should go.
-4. **Announcement bar.** The header group in this repo holds only the header. If the "reserve for $10" bar comes from an app embed or sits outside the header group, the hide rule will not catch it. Check on the preview.
-5. **Black Friday copy is fixed text** (bar, kicker, dark box, tier lines, closing line, FAQ shipping dates). It needs an edit after 24 Dec. The Thanksgiving shipping answer dates sooner.
-6. **Email form.** Set up the Shopify email for the tag `calm-stack-app-lead`. Shopify may show its captcha page after submit.
-7. **Daily log.** GIT-RULES asks for a line in the daily log; it is not in this repo, so it was not written.
-
-## Go-live steps (for Geordie)
-
-1. Online Store > Themes > Add theme > Connect from GitHub > branch `shop/calm-stack-v2`. Preview `/products/calm-stack?view=calm-stack-v2`.
-2. OK: squash-merge to main. Nothing changes for customers yet, because the product still uses the old template.
-3. Products > The Calm Stack > Theme template > `calm-stack-v2`. Save. That is the go-live.
-4. Same minute: end the pre-order in PreProduct for this product and remove the `pre-order` tag, so the app stops adding its deposit plan or button text.
-5. Test with a real card: add to cart, reach checkout, confirm full price and no deposit line. Check Meta Events Manager > Test events for ViewContent, AddToCart and InitiateCheckout.
-6. Rollback at any point: switch the template back (step 3). Full rollback: publish theme `backup-live-2026-11-24 (pre-order, before Calm Stack v2)`.
-7. Tell Diksha it is live.
+1. Create the Shopify variants and the magnesium add-on product (above).
+2. Set the addon variant ID in the template JSON.
+3. Backup the live theme.
+4. Connect the branch as a draft theme and preview at 390px.
+5. If OK, squash-merge to main.
+6. Products > The Calm Stack > Theme template: confirm it's `calm-stack-v2`.
+7. Test: add each option to cart, with and without the magnesium add-on. Verify totals ($39, $78, $64, $103).
+8. Check Meta Events Manager for AddToCart firing.
+9. Write the variant IDs and SKUs to the vault.

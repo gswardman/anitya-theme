@@ -71,20 +71,21 @@
         "shelf1": {
           "type": "shelf_product",
           "settings": {
-            "label": "Black Friday",
-            "title": "The Calm Stack",
-            "body": "Saffron for the morning. Magnesium for the evening. Two jars, one routine, tied to the app so you can see how you feel.",
-            "guarantee": "60 mornings to see for yourself, or your money back.",
-            "cta": "Shop the Calm Stack",
+            "label": "Morning Saffron",
+            "title": "Morning Saffron",
+            "body": "One capsule of saffron each morning and a free app to track how you feel. Buy 2 jars, get 1 free.",
+            "guarantee": "60-morning guarantee: not for you, full refund, keep the jar.",
+            "cta": "Shop Morning Saffron",
             "url": "/products/calm-stack",
-            "small": "A free extra jar with The Practice or The Season, until 24 Dec. No subscription."
+            "small": "Buy 2, get 1 free. No subscription."
           }
         }
       },
       "block_order": ["app1","app2","app3","app4","free1","free2","free3","free4","shelf1"],
       "settings": {
+        "bf_show": true,
+        "bf_text": "Buy 2 jars of Morning Saffron, get 1 free",
         "bf_link": "/products/calm-stack",
-        "bf_text": "Black Friday: a free extra jar with The Practice or The Season · until 24 Dec · no code needed · ships within one business day",
         "app_url": "https://app.anityalabs.com",
         "fund_url": "https://finnwardman.com",
         "about_url": "/pages/about"
