@@ -6,6 +6,7 @@
         "tier_1": {
           "type": "tier",
           "settings": {
+            "variant_id": "68335831417223",
             "detail": "60 mornings, 65¢ a morning",
             "per_morning": "65¢ a morning",
             "sticky_detail": "1 jar · $39"
@@ -14,6 +15,7 @@
         "tier_2": {
           "type": "tier",
           "settings": {
+            "variant_id": "68335831449991",
             "detail": "180 mornings, 43¢ a morning",
             "tag": "SAVE $39 · ONE JAR FREE",
             "per_morning": "43¢ a morning",

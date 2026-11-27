@@ -8,7 +8,19 @@
 
 {%- liquid
   assign tiers = section.blocks | where: 'type', 'tier'
-  assign default_variant = product.variants[1] | default: product.selected_or_first_available_variant
+  comment
+    Look up each tier's variant by ID (from the block setting) instead of by
+    position, because the old stack variants still sit at indices 0-2.
+  endcomment
+  assign default_tier = tiers[1] | default: tiers[0]
+  assign default_vid = default_tier.settings.variant_id | plus: 0
+  assign default_variant = product.selected_or_first_available_variant
+  for v in product.variants
+    if v.id == default_vid
+      assign default_variant = v
+      break
+    endif
+  endfor
   assign default_price = default_variant.price | money_without_trailing_zeros
   assign addon_id = section.settings.addon_variant_id
   assign addon_price_cents = section.settings.addon_price | default: 2500
@@ -145,7 +157,11 @@ Free US shipping · Ships within one business day · No subscription
 {%- form 'product', product, id: 'cs2-product-form', class: 'cs2-form', novalidate: 'novalidate' -%}
 <div class="cs2-tiers" role="radiogroup" aria-labelledby="cs2-choose" style="display: flex; flex-direction: column; gap: 10px">
 {%- for block in tiers -%}
-{%- assign variant = product.variants[forloop.index0] -%}
+{%- assign block_vid = block.settings.variant_id | plus: 0 -%}
+{%- assign variant = nil -%}
+{%- for v in product.variants -%}
+  {%- if v.id == block_vid -%}{%- assign variant = v -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
 {%- if variant -%}
 <input type="radio" name="id" value="{{ variant.id }}" id="cs2-tier-{{ block.id }}" class="cs2-radio"{% if variant.id == default_variant.id %} checked{% endif %} data-name="{{ variant.title | escape }}" data-price="{{ variant.price | money_without_trailing_zeros | strip_html | escape }}" data-price-cents="{{ variant.price }}" data-sticky="{{ block.settings.sticky_detail | escape }}">
 <label class="tile" for="cs2-tier-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -588,7 +604,7 @@ Free US shipping · Ships within one business day · No subscription
       "name": "Saffron tier",
       "limit": 2,
       "settings": [
-        {"type":"paragraph","content":"Tiers follow the product's variants in order. The name and price come from the variant."},
+        {"type":"text","id":"variant_id","label":"Shopify variant ID","info":"The numeric variant ID. The name and price come from the variant."},
         {"type":"text","id":"detail","label":"Detail line"},
         {"type":"text","id":"tag","label":"Tag (e.g. SAVE $39)"},
         {"type":"text","id":"per_morning","label":"Price per morning"},
